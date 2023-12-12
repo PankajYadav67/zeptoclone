@@ -5,22 +5,22 @@ import { ProductCategory } from "../Product Category/ProductCategory";
 
 export const HeroSection = () => {
   return (
-    <div>
+    <div className="mx-12 mt-4  space-y-6">
       
-      <div className="w-4/4 mx-10 mt-2 mb-5 h-auto ">
-        <a href="/" className="w-100%">
+      <div >
+        <a href="/" >
           <img src={Banner} alt="Banner has a error" />
         </a>
       </div>
 
-      <div className="w-4/4 mx-10 mb-5 h-auto">
-        <a href="/" className="w-100%">
+      <div >
+        <a href="/" >
           <img src={BigHero1} alt="BigHero1 has a error" />
         </a>
       </div>
 
-      <div className="w-4/4 mx-10 mb-5 h-auto">
-        <a href="/" className="w-100%">
+      <div className="">
+        <a href="/" >
           <img src={BigHero2} alt="BigHero2 has a error" />
         </a>
       </div>

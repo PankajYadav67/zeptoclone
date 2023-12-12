@@ -9,10 +9,12 @@ import fruitsSeed from "../Assets/ProductCategory/Fruits_&_Seeds-01.png";
 import cutsSprouts from "../Assets/ProductCategory/Cuts_and_Sprouts-01.png";
 import oralCare from "../Assets/ProductCategory/Oral_Care-01.png";
 
+
+
 export const ProductCategory = () => {
   return (
     <div>
-      <div className="mx-10 my-2 flex flex-row justify-between items-center">
+      <div className="my-2 flex flex-row justify-between font-medium items-center">
         <h4 className="justify-start text-roboto">Product Category</h4>
         <button className="justify-end  " style={{ color: "#FB3A68" }}>
           <h4 className="gap-2">
