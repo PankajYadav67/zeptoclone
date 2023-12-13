@@ -12,11 +12,13 @@ import oralCare from "../Assets/ProductCategory/Oral_Care-01.png";
 
 
 export const ProductCategory = () => {
+  let arr = [riceCereals, poojaNeeds, cleaningAids, partyNeeds, honey, fruitsSeed, cutsSprouts, oralCare];
+
   return (
     <div>
       <div className="my-2 flex flex-row justify-between font-medium items-center">
         <h4 className="justify-start text-roboto">Product Category</h4>
-        <button className="justify-end  " style={{ color: "#FB3A68" }}>
+        <button className="justify-end" style={{ color: "#FB3A68" }}>
           <h4 className="gap-2">
             {" "}
             See All{" "}
@@ -25,55 +27,12 @@ export const ProductCategory = () => {
         </button>
       </div>
 
-      <div className="grid  grid-cols-4 justify-evenly gap-4 mx-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 justify-evenly gap-4 mx-10">
 
+        {arr.map((src, index) => (<div key={index} className="w-11/12 mx-auto">
+          <img src={src} alt={`Product ${index + 1}`} className="w-full h-auto" />
+        </div>))};
         
-        <div className="w-full max-w-xs mx-auto mb-6">
-          <div className="w-11/12 mx-auto">
-            <img src={riceCereals} alt="" className="w-full h-auto" />
-          </div>
-        </div>
-        <div className="w-full max-w-xs mx-auto mb-6">
-          <div className="w-11/12 mx-auto">
-            <img src={poojaNeeds} alt="" className="w-full h-auto" />
-          </div>
-        </div>
-        <div className="w-full max-w-xs mx-auto mb-6">
-          <div className="w-11/12 mx-auto">
-            <img src={cleaningAids} alt="" className="w-full h-auto" />
-          </div>
-        </div>
-        <div className="w-full max-w-xs mx-auto mb-6">
-          <div className="w-11/12 mx-auto">
-            <img src={partyNeeds} alt="" className="w-full h-auto" />
-          </div>
-        </div>
-
-        <div className="w-full max-w-xs mx-auto mb-6">
-          <div className="w-11/12 mx-auto">
-            <img src={honey} alt="" className="w-full h-auto" />
-          </div>
-        </div>
-
-        <div className="w-full max-w-xs mx-auto mb-6">
-          <div className="w-11/12 mx-auto">
-            <img src={oralCare} alt="" className="w-full h-auto" />
-          </div>
-        </div>
-
-        <div className="w-full max-w-xs mx-auto mb-6">
-          <div className="w-11/12 mx-auto">
-            <img src={cutsSprouts} alt="" className="w-full h-auto" />
-          </div>
-        </div>
-
-        <div className="w-full max-w-xs mx-auto mb-6">
-          <div className="w-11/12 mx-auto">
-            <img src={fruitsSeed} alt="" className="w-full h-auto" />
-          </div>
-        </div>
-
-
       </div>
     </div>
   );

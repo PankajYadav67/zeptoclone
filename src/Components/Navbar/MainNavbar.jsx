@@ -1,4 +1,5 @@
-import "./Navbar.css";
+import React, { useState } from 'react';
+import { LocationCard } from '../Loaction/LocationCard';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
@@ -6,6 +7,12 @@ import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 
 
 export const ZeptoNavbar = () => {
+  const [showCard, setShowCard] = useState(false);
+
+  const handleLocationClick = () => {
+    setShowCard(true);
+  };
+  
   return (
     <div className="flex flex-col md:flex-row justify-evenly items-center bg-[#3a0463] h-20 font-medium text-white">
 
@@ -24,7 +31,8 @@ export const ZeptoNavbar = () => {
       </div>
 
       <div className="text-center md:text-left">
-        <p className="font-lota text-2xl">Juhu</p>
+       <button onClick={handleLocationClick}>Location</button>
+       {showCard && <LocationCard onClose={() => setShowCard(false)} />}
       </div>
 
       <div className="w-2/4 my-6 rounded">

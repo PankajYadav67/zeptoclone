@@ -9,6 +9,7 @@ export const Home = () => {
         <>
             <ZeptoNavbar />
             <HeroSection />
+            
             <FooterMerge />
         </>
 
