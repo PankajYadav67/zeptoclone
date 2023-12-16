@@ -15,7 +15,7 @@ export const BankDiscountCard = ({ offer }) => {
 
     return (
         <div className="relative p-4 w-full md:w-1/2 lg:w-1/3">
-            <div className="border-2 rounded-lg p-4 relative">
+            <div className="border-2 rounded-lg shadow-md p-4 relative">
                 <img src={offer.image_url} alt={offer.title} className="w-full h-40 object-contain mb-4 rounded-lg" />
                 <h3 className="text-lg font-semibold mb-2">{offer.title}</h3>
                 <p className="text-gray-600 mb-4">{offer.subtitle}</p>

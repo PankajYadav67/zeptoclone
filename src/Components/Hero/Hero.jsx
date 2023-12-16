@@ -4,6 +4,7 @@ import Banner from "../Assets/BigHero/paan-corner-banner-desktop.png";
 import { ProductCategory } from "../Product Category/ProductCategory";
 
 import { FetchBankOffer} from "../BankDiscount/BankFetch";
+import { CarouselFetch } from "../Carousel/CarouselFetch";
 
 export const HeroSection = () => {
   return (
@@ -29,6 +30,7 @@ export const HeroSection = () => {
           <img src={BigHero2} alt="BigHero2 has a error" />
         </a>
       </div>
+      <CarouselFetch/>
 
       <ProductCategory />
 

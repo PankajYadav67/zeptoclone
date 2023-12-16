@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { BankDiscountCard } from './BankDiscountCard';
+import { CarouselCard } from './CarouselCard';
 
-export const BankDiscountCards = ({ data }) => {
+export const CarouselCards = ({ data }) => {
   const [startIndex, setStartIndex] = useState(0);
-  const cardsPerPage = 3;
+  const cardsPerPage = 5;
 
   const handleNext = () => {
     setStartIndex((prevIndex) => Math.min(prevIndex + cardsPerPage, data.length - 1));
@@ -15,14 +15,14 @@ export const BankDiscountCards = ({ data }) => {
 
   const renderPrevButton = startIndex > 0 && (
     <button onClick={handlePrev} className="flex-shrink-0 p-2 bg-slate-50 shadow-2xl  rounded-full">
-      <svg className="h-6 w-6 " fill="none" stroke="#FB3A68" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <svg className="h-6 w-6" fill="none" stroke="#FB3A68" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
       </svg>
     </button>
   );
 
   const renderNextButton = startIndex + cardsPerPage < data.length && (
-    <button onClick={handleNext} className="flex-shrink-0 p-2 bg-slate-50-200 shadow-2xl rounded-full ">
+    <button onClick={handleNext} className="flex-shrink-0 p-2 bg-slate-50 shadow-2xl rounded-full ">
       <svg className="h-6 w-6" fill="none" stroke="#FB3A68" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
       </svg>
@@ -33,7 +33,7 @@ export const BankDiscountCards = ({ data }) => {
     <div className="flex items-center">
       {renderPrevButton}
       {data.slice(startIndex, startIndex + cardsPerPage).map((offer, index) => (
-        <BankDiscountCard key={index} offer={offer} />
+        <CarouselCard key={index} offer={offer} />
       ))}
       {renderNextButton}
     </div>

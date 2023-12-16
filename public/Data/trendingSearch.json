@@ -1,130 +1,194 @@
 [
   {
     "image_url": "https://cdn.grofers.com/assets/ui/search_rakhi.png",
-    "keyword": "rakhi"
+    "keyword": "Rakhi",
+    "quantity": "1 unit",
+    "price": "₹200"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/sugar.png",
-    "keyword": "sugar"
+    "keyword": "Sugar",
+    "quantity": "1 kg",
+    "price": "₹40"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/search_roli.png",
-    "keyword": "roli chawal"
+    "keyword": "Roli Chawal",
+    "quantity": "1 set",
+    "price": "₹80"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/atta.png",
-    "keyword": "atta"
+    "keyword": "Atta",
+    "quantity": "5 kg",
+    "price": "₹30"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/search_kajukatli.png",
-    "keyword": "indian sweets"
+    "keyword": "Indian Sweets",
+    "quantity": "500 gm",
+    "price": "₹150"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/tea.png",
-    "keyword": "tea"
+    "keyword": "Tea",
+    "quantity": "250 gm",
+    "price": "₹60"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/search_chocolate.png",
-    "keyword": "gift"
+    "keyword": "Gift",
+    "quantity": "1 unit",
+    "price": "₹100"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/ghee.png",
-    "keyword": "ghee"
+    "keyword": "Ghee",
+    "quantity": "500 ml",
+    "price": "₹250"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/mustard%20oil.png",
-    "keyword": "mustard oil"
+    "keyword": "Mustard Oil",
+    "quantity": "1 liter",
+    "price": "₹120"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/salt.png",
-    "keyword": "salt"
+    "keyword": "Salt",
+    "quantity": "1 kg",
+    "price": "₹20"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/biscuits.png",
-    "keyword": "biscuit"
+    "keyword": "Biscuit",
+    "quantity": "500 gm",
+    "price": "₹45"
   },
   {
     "image_url": "https://cdn.grofers.com/app/images/category/cms_images/icon/1010_1564721329908.png",
-    "keyword": "dal"
+    "keyword": "Dal",
+    "quantity": "1 kg",
+    "price": "₹80"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/detergent.png",
-    "keyword": "detergent powder"
+    "keyword": "Detergent Powder",
+    "quantity": "1 kg",
+    "price": "₹150"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/chocolate.png",
-    "keyword": "chocolate"
+    "keyword": "Chocolate",
+    "quantity": "250 gm",
+    "price": "₹120"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/nuts.png",
-    "keyword": "nuts"
+    "keyword": "Nuts",
+    "quantity": "200 gm",
+    "price": "₹200"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/oil.png",
-    "keyword": "oil"
+    "keyword": "Oil",
+    "quantity": "1 liter",
+    "price": "₹100"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/rice.png",
-    "keyword": "rice"
+    "keyword": "Rice",
+    "quantity": "5 kg",
+    "price": "₹50"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/besan.png",
-    "keyword": "besan"
+    "keyword": "Besan",
+    "quantity": "500 gm",
+    "price": "₹40"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/poha.png",
-    "keyword": "poha"
+    "keyword": "Poha",
+    "quantity": "2 kg",
+    "price": "₹30"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/cheese.png",
-    "keyword": "cheese"
+    "keyword": "Cheese",
+    "quantity": "250 gm",
+    "price": "₹90"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/chips.png",
-    "keyword": "chips"
+    "keyword": "Chips",
+    "quantity": "200 gm",
+    "price": "₹50"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/butter.png",
-    "keyword": "butter"
+    "keyword": "Butter",
+    "quantity": "500 gm",
+    "price": "₹70"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/maida.png",
-    "keyword": "maida"
+    "keyword": "Maida",
+    "quantity": "1 kg",
+    "price": "₹30"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/soap.png",
-    "keyword": "soap"
+    "keyword": "Soap",
+    "quantity": "4 units",
+    "price": "₹25"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/namkeen.png",
-    "keyword": "namkeen"
+    "keyword": "Namkeen",
+    "quantity": "250 gm",
+    "price": "₹60"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/rajma.png",
-    "keyword": "rajma"
+    "keyword": "Rajma",
+    "quantity": "1 kg",
+    "price": "₹40"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/jeera.png",
-    "keyword": "jeera"
+    "keyword": "Jeera",
+    "quantity": "100 gm",
+    "price": "₹50"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/moong%20_dal.png",
-    "keyword": "moong dal"
+    "keyword": "Moong Dal",
+    "quantity": "500 gm",
+    "price": "₹70"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/sanitizer.png",
-    "keyword": "sanitizer"
+    "keyword": "Sanitizer",
+    "quantity": "250 ml",
+    "price": "₹80"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/bread.png",
-    "keyword": "bread"
+    "keyword": "Bread",
+    "quantity": "1 loaf",
+    "price": "₹30"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/honey.png",
-    "keyword": "honey"
+    "keyword": "Honey",
+    "quantity": "500 gm",
+    "price": "₹150"
   },
   {
     "image_url": "https://cdn.grofers.com/assets/ui/sooji.png",
-    "keyword": "sooji"
+    "keyword": "Sooji",
+    "quantity": "1 kg",
+    "price": "₹40"
   }
 ]
