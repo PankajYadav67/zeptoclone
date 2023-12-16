@@ -4,7 +4,7 @@ import { Footer2 } from "./Footer2"
 
 export const FooterMerge = () => {
     return(
-        <div className="bg-gray-50 ">
+        <div className=" ">
          <Footer1/>
          <div className="w-full border-t-2 my-10 border-gray-300 "></div>
          <Footer2/>

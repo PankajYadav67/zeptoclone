@@ -1,11 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import { LoginMain } from "../Pages/LoginMain";
 import { Home } from "../Pages/Home";
+import { ZeptoNavbar } from "../Components/Navbar/MainNavbar";
 
 
 export const RoutesMain = () => {
   return (
     <div>
+      <ZeptoNavbar/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginMain />} />
@@ -18,7 +20,7 @@ export const RoutesMain = () => {
 
 export const DefaultRoute = () => {
   return (
-    <div className="min-h-screen flex bg-slate-200 justify-center items-center w-full">
+    <div className="min-h-screen flex bg-slate-200 overflow-hidden justify-center items-center w-full">
       <div className="text-center">
         <h2 className="font-bold text-8xl hover:underline decoration-sky-500 ">404 Not Found</h2>
          <br/>

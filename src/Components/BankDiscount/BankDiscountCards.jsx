@@ -14,16 +14,16 @@ export const BankDiscountCards = ({ data }) => {
   };
 
   const renderPrevButton = startIndex > 0 && (
-    <button onClick={handlePrev} className="flex-shrink-0 p-4 bg-gray-200 hover:bg-gray-300 rounded-full">
-      <svg className="h-6 w-6 rounded" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <button onClick={handlePrev} className="flex-shrink-0 p-4 bg-white-200 shadow-2xl  rounded-full">
+      <svg className="h-6 w-6 rounded" fill="none" stroke="#FB3A68" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
       </svg>
     </button>
   );
 
   const renderNextButton = startIndex + cardsPerPage < data.length && (
-    <button onClick={handleNext} className="flex-shrink-0 p-4 bg-gray-200  rounded-full hover:bg-gray-300">
-      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <button onClick={handleNext} className="flex-shrink-0 p-4 bg-white-200 shadow-2xl rounded-full ">
+      <svg className="h-6 w-6" fill="none" stroke="#FB3A68" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
       </svg>
     </button>

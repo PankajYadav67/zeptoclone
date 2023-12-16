@@ -6,6 +6,7 @@ import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 
 
 
+
 export const ZeptoNavbar = () => {
   const [showCard, setShowCard] = useState(false);
 
@@ -14,16 +15,16 @@ export const ZeptoNavbar = () => {
   };
   
   return (
-    <div className="flex flex-col md:flex-row justify-evenly items-center bg-[#3a0463] h-20 font-medium text-white">
+    <div className="flex flex-col overflow-hidden md:flex-row justify-evenly items-center bg-[#3a0463] h-20 font-medium text-white">
 
       <div className="w-full md:w-24 mb-4 md:mb-0 ">
-        <a href="/">
+        <Link to="/">
           <img
             className="w-full h-auto object-contain"
             src="https://www.zeptonow.com/images/logo.svg"
             alt="logo"
           />
-        </a>
+        </Link>
       </div>
 
       <div className="h-9 mt-2 opacity-50 text-2xl">
@@ -46,11 +47,8 @@ export const ZeptoNavbar = () => {
 
       <Link to="/login">
         <div className="font-Segoe UI Symbol text-lg flex items-center justify-between	" >
-
           <p className="ml-2 text-lg">My Account</p>
         </div>
-
-
       </Link>
 
 

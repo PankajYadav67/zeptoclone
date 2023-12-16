@@ -7,7 +7,7 @@ import { FetchBankOffer} from "../BankDiscount/BankFetch";
 
 export const HeroSection = () => {
   return (
-    <div className="mx-12 mt-4  space-y-6">
+    <div className="mx-12 mt-4 space-y-6">
       
       <div >
         <a href="/" >
