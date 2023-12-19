@@ -16,14 +16,12 @@ export const ProductCategory = () => {
 
   return (
     <div>
-      <div className="my-2 flex flex-row justify-between font-medium items-center">
-        <h4 className="justify-start text-roboto">Product Category</h4>
+      <div className="my-2 flex justify-between font-medium items-center">
+        <h1 className="justify-start text-roboto">Product Category</h1>
         <button className="justify-end" style={{ color: "#FB3A68" }}>
-          <h4 className="gap-2">
-            {" "}
-            See All{" "}
+          <h1 className="gap-3"> See All
             <FontAwesomeIcon icon={faArrowRight} style={{ color: "#FB3A68" }} />
-          </h4>
+          </h1>
         </button>
       </div>
 

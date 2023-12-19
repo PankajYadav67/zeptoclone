@@ -7,9 +7,7 @@ import { HeroSection } from "../Components/Hero/Hero"
 export const Home = () => {
     return (
         <>
-      
             <HeroSection />
-            
             <FooterMerge />
         </>
 
