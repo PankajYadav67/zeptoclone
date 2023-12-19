@@ -1,7 +1,7 @@
 import BigHero1 from "../Assets/BigHero/BigHero2.png";
 import BigHero2 from "../Assets/BigHero/bigHero.png";
 import Banner from "../Assets/BigHero/paan-corner-banner-desktop.png";
-import { ProductCategory } from "../Product Category/ProductCategory";
+import { ProductCategory } from "../Product/ProductCategory";
 
 import { FetchBankOffer} from "../BankDiscount/BankFetch";
 import { CarouselFetch } from "../Carousel/CarouselFetch";

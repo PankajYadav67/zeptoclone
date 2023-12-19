@@ -1,0 +1,130 @@
+{
+  "login": [
+    {
+      "id": 1,
+      "email": "suresh@gmail.com",
+      "username": "suresh",
+      "password": "Suresh@123"
+    },
+    {
+      "id": 2,
+      "email": "pankaj981966@gmail.com",
+      "username": "pankaj",
+      "password": "password2"
+    },
+    {
+      "email": "random@gmail.com",
+      "password": "Random@123",
+      "username": "random",
+      "id": 3
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 4
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 5
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 6
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 7
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 8
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 9
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 10
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 11
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 12
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 13
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 14
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 15
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 16
+    },
+    {
+      "email": "suresh10@gmail.com",
+      "password": "Suresh@123",
+      "username": "suresh10",
+      "id": 17
+    },
+    {
+      "email": "Pankaj981966@gmail.com",
+      "password": "10",
+      "username": "Pankaj981966@gmail.com",
+      "id": 18
+    },
+    {
+      "email": "Pankaj981966@gmail.com",
+      "password": "10",
+      "username": "Pankaj981966@gmail.com",
+      "id": 19
+    },
+    {
+      "email": "Pankaj981966@gmail.com",
+      "password": "10",
+      "username": "Pankaj981966@gmail.com",
+      "id": 20
+    },
+    {
+      "email": "Pankaj981966@gmail.com",
+      "password": "10",
+      "username": "Pankaj981966@gmail.com",
+      "id": 21
+    }
+  ]
+}

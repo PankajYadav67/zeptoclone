@@ -38,4 +38,5 @@ export const BankDiscountCards = ({ data }) => {
       {renderNextButton}
     </div>
   );
+  
 };

@@ -1,4 +1,5 @@
 const host = "http://localhost:3000";
+export const dbhost = "http://localhost:8080"; //assuming db.json run on 
 
 export const USER_GET = `${host}/user`;
 export const USER_LOGIN = `${host}/user/login`;
