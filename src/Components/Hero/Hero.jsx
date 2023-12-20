@@ -8,15 +8,15 @@ import { CarouselFetch } from "../Carousel/CarouselFetch";
 
 export const HeroSection = () => {
   return (
-    <div className="mx-12 mt-4 space-y-6">
+    <div className="mx-12 md:mx-12 mt-4  space-y-6">
       
-      <div >
+      <div className="w-full relative">
         <a href="/" >
           <img src={Banner} alt="Banner has a error" />
         </a>
       </div>
 
-      <div >
+      <div className="w-full relative">
         <a href="/" >
           <img src={BigHero1} alt="BigHero1 has a error" />
         </a>
@@ -25,7 +25,7 @@ export const HeroSection = () => {
          <FetchBankOffer/>  
 
 
-      <div className="">
+      <div className="w-full relative">
         <a href="/" >
           <img src={BigHero2} alt="BigHero2 has a error" />
         </a>

@@ -8,7 +8,8 @@ import Snackbar from '@mui/joy/Snackbar';
 export const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [name, setName] =useState("");
   const [open, setOpen] = useState(false);
 
   const handleClose = (_, reason) => {
@@ -18,41 +19,60 @@ export const Signup = () => {
     setOpen(false);
   };
 
-  const handleSignup =  (e) => {
+  const handleSignup = (e) => {
     e.preventDefault();
-     axios.post(`${dbhost}/login`, {
+    axios.post(`${dbhost}/login`, {
       email,
       password,
-      username
+      name,
+      phoneNumber
     })
       .then((response) => {
         // Handle the successful signup response here
         console.log('Signup successful:', response.data);
-        setOpen(true); 
-  
+        setOpen(true);
+
       })
-      .catch((error) => { console.error('Signup error:', error.response?.data || error.message)});
+      .catch((error) => { console.error('Signup error:', error.response?.data || error.message) });
   }
 
 
   return (
     <form className="space-y-6" onSubmit={handleSignup}>
+
       <div>
         <label
-          htmlFor="username"
+          htmlFor="name"
           className="block text-sm font-medium text-gray-700"
         >
-          Username
+          Full Name
         </label>
         <input
-          id="username"
+          id="name"
           type="text"
-          autoComplete="email"
           required
           className="mt-1 p-2 w-full border rounded-md"
-          placeholder="suresh10"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Suresh Yadav"
+          value={name}
+          onChange={(e)=>setName(e.target.value)}
+        />
+      </div>
+
+      <div>
+        <label
+          htmlFor="phone"
+          className="block text-sm font-medium text-gray-700"
+        >
+          Phone Number
+        </label>
+        <input
+          id="phone"
+          type="tel"
+          required
+          className="mt-1 p-2 w-full border rounded-md"
+          placeholder="9967917448"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
         />
       </div>
 
@@ -75,12 +95,13 @@ export const Signup = () => {
         />
       </div>
 
+
       <div>
         <label
           htmlFor="password"
           className="block text-sm font-medium text-gray-700"
         >
-          Password
+         Password
         </label>
         <input
           id="password"
@@ -88,26 +109,7 @@ export const Signup = () => {
           autoComplete="current-password"
           required
           className="mt-1 p-2 w-full border rounded-md"
-          
           placeholder="Suresh@123"
-
-        />
-      </div>
-
-      <div>
-        <label
-          htmlFor="password1"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Confirm Password
-        </label>
-        <input
-          id="password1"
-          type="password"
-          autoComplete="current-password"
-          required
-          className="mt-1 p-2 w-full border rounded-md"
-          placeholder="********"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -121,20 +123,20 @@ export const Signup = () => {
           Sign-Up
         </button>
       </div>
-        {/* Snackbar for displaying success message */}
-        <Snackbar
+      {/* Snackbar for displaying success message */}
+      <Snackbar
         open={open}
         autoHideDuration={3000}
         onClose={handleClose}
         color="success"
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
-       "Congratulations! 🎉 You've successfully signed up!"
+        "Congratulations! 🎉 You've successfully signed up!"
       </Snackbar>
 
 
     </form>
-    
+
   )
 }
 

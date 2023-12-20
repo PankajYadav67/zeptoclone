@@ -3,20 +3,23 @@
     {
       "id": 1,
       "email": "suresh@gmail.com",
-      "username": "suresh",
-      "password": "Suresh@123"
+      "name": "suresh",
+      "password": "Suresh@123",
+      "phone": 9967917448
     },
     {
       "id": 2,
       "email": "pankaj981966@gmail.com",
-      "username": "pankaj",
-      "password": "password2"
+      "name": "pankaj",
+      "password": "password2",
+      "phone": 9967917449
     },
     {
       "email": "random@gmail.com",
       "password": "Random@123",
-      "username": "random",
-      "id": 3
+      "name": "random",
+      "id": 3,
+      "phone": 9967917440
     }
    
   ]

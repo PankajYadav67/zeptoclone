@@ -25,7 +25,7 @@ export const CarouselCard = ({ offer }) => {
                         {count > 0 && (
                             <button className='bg-[#FB3A68] text-white font-thin rounded-tl-lg  rounded-bl-lg py-1 px-2' onClick={handleMinu}><FontAwesomeIcon icon={faMinus} size="xs"/></button>
                         )}
-                        <button className={` font-bold  py-1 px-2 ${count === 0 ? " rounded-md border border-[#FB3A68]  text-[#FB3A68]  " : "bg-[#FB3A68] text-white"}`} value={count} onClick={() => setCount(1)}>
+                        <button className={` font-bold   py-1 px-2 ${count === 0 ? " rounded-md border border-[#FB3A68]  text-[#FB3A68]  " : "bg-[#FB3A68] text-white"}`} value={count} onClick={() => setCount(1)}>
                             {count === 0 ? " Add " : count}
                         </button>
                         {count > 0 && (
