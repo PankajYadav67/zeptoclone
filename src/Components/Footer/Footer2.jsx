@@ -12,10 +12,10 @@ export const Footer2 = () => {
                 </div>
 
                 <div className="flex w-64 h-[40px] gap-8 cursor-pointer">
-                   <a target="_blank" href="https://www.instagram.com/zeptonow/"><FontAwesomeIcon icon={faInstagram} style={{ color: "#878787", fontSize: "1.7rem" }} /></a> 
-                   <a target="_blank" href="https://twitter.com/ZeptoNow"><FontAwesomeIcon icon={faTwitter} style={{ color: "#878787", fontSize: "1.7rem" }} /></a> 
-                    <a target="_blank" href="https://www.facebook.com/Zeptonow/"><FontAwesomeIcon icon={faFacebookF} style={{ color: "#878787", fontSize: "1.5em" }} /></a>
-                    <a target="_blank" href="https://www.linkedin.com/company/zeptonow/"><FontAwesomeIcon icon={faLinkedinIn} style={{ color: "#878787", fontSize: "1.7rem" }} /></a>
+                   <a target="_blank" rel="noreferrer" href="https://www.instagram.com/zeptonow/"><FontAwesomeIcon icon={faInstagram} style={{ color: "#878787", fontSize: "1.7rem" }} /></a> 
+                   <a target="_blank" rel="noreferrer" href="https://twitter.com/ZeptoNow"><FontAwesomeIcon icon={faTwitter} style={{ color: "#878787", fontSize: "1.7rem" }} /></a> 
+                    <a target="_blank" rel="noreferrer" href="https://www.facebook.com/Zeptonow/"><FontAwesomeIcon icon={faFacebookF} style={{ color: "#878787", fontSize: "1.5em" }} /></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/zeptonow/"><FontAwesomeIcon icon={faLinkedinIn} style={{ color: "#878787", fontSize: "1.7rem" }} /></a>
                 </div>
 
                 <p className="text-[#878787]">© KiranaKart Technologies Private Limited</p>

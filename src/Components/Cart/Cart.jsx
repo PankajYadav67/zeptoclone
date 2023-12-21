@@ -1,6 +1,6 @@
 
 
-export const Cart = () => {
+export const Cart = ({data}) => {
     const totalItems = 8;
     return (
         <div className="bg-skin-primary-dark-lighter md:w-screen md:fixed md:left-0 md:overflow-y-scroll no-scrollbar">
@@ -26,6 +26,7 @@ export const Cart = () => {
                     {/* second div */}
                     <div className="bg-white pt-12 sm:hidden px-3">
                         <div className="pb-60 bg-skin-primary-dark-lighter md:pb-0 md:flex md:mx-2 md:justify-between">
+                            
                         </div>
                     </div>
                 </div>

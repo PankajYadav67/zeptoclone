@@ -3,11 +3,7 @@ import { CarouselCard } from './CarouselCard';
 
 export const CarouselCards = ({ data }) => {
   const [startIndex, setStartIndex] = useState(0);
- 
   const cardsPerPage = 5;
-
- 
-
 
   const handleNext = () => {
     setStartIndex((prevIndex) => Math.min(prevIndex + cardsPerPage, data.length - 1));

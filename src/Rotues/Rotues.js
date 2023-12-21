@@ -5,8 +5,9 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "../Pages/Home";
 import { ZeptoNavbar } from "../Components/Navbar/MainNavbar";
 import { LoginMerge } from "../Components/Login/LoginMerge";
-import { Product } from "../Components/Product/Product";
 import { Cart } from "../Components/Cart/Cart";
+import { Products } from "../Components/Product/Products";
+import { Product } from "../Components/Product/Product";
 
 //Main Routes Function
 export const RoutesMain = () => {
@@ -17,7 +18,8 @@ export const RoutesMain = () => {
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<LoginMerge />} />
-        <Route path="/product" element={<Product />} />
+        <Route path="/product/:id" element={<Product />} />
+        <Route path="/products" element={<Products />} />
         <Route path="*" element={<DefaultRoute/>}/>
       </Routes>
     </div>
