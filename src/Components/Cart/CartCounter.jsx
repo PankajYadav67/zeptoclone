@@ -1,0 +1,8 @@
+
+
+export const CartCounter = () => {
+    return(
+        <>
+        </>
+    )
+}
