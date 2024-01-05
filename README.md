@@ -19,8 +19,8 @@ Product Recommendations: Elevate your shopping journey with intelligent product 
 Technologies Used 💻
 
 Frontend: HTML5, CSS3, JavaScript (React.js)
-Backend: Node.js, Express.js
-Database: MongoDB
+Backend: Node.js, 
+Database: json-server
 Getting Started 🚀
 
 Clone the repository:
