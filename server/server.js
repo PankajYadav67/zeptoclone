@@ -4,7 +4,7 @@ const { MongoClient } = require("mongodb");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const MONGODB_URI = "YOUR_MONGODB_URI";
+const MONGODB_URI = "mongodb+srv://pankaj981966:6YVGhHtYacwZN45W@cluster0.egqxhym.mongodb.net/";
 
 app.use(bodyParser.json());
 
@@ -14,8 +14,8 @@ MongoClient.connect(MONGODB_URI, {
   useUnifiedTopology: true,
 })
   .then((client) => {
-    const db = client.db("your-database-name");
-    const collection = db.collection("your-collection-name");
+    const db = client.db("zeptoClone");
+    const collection = db.collection("cart");
 
     // API endpoint to handle adding items to the database
     app.post("/cart", (req, res) => {
