@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c8fd3a8f.css",
+    "main.js": "/static/js/main.0ad897c2.js",
+    "static/media/bigHero.png": "/static/media/bigHero.e4ff899a9c2b000b056f.png",
+    "static/media/BigHero2.png": "/static/media/BigHero2.f293a14e930f07ca9f95.png",
+    "static/media/paan-corner-banner-desktop.png": "/static/media/paan-corner-banner-desktop.07858f21fb91334a74a5.png",
+    "index.html": "/index.html",
+    "main.c8fd3a8f.css.map": "/static/css/main.c8fd3a8f.css.map",
+    "main.0ad897c2.js.map": "/static/js/main.0ad897c2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c8fd3a8f.css",
+    "static/js/main.0ad897c2.js"
+  ]
+}

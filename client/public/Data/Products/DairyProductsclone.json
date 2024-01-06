@@ -1,0 +1,82 @@
+{
+    "products": [
+      {
+        "id": "406724",
+        "title": "Kellogg's Moons & Stars Cereals Chocos",
+        "brand": "Kellogg's",
+        "type": "Chocos",
+        "unit": "1.2 kg",
+        "price": 404,
+        "discount": "40% OFF",
+        "inventory": 7,
+        "rating": 0,
+        "image_url": "https://cdn.grofers.com/app/images/products/normal/pro_406724.jpg?ts=1624525137",
+        "description": "Nourishing & Solid Breakfast/Snack: Kellogg’s Chocos Moons & Stars is a nourishing & solid breakfast/evening snack option for kids. It makes milk chocolaty & crunchy and fills your kid’s tummy, giving them the Energy to stay active & fun! Packed with Nutrients: Kellogg’s Chocos Moons & Stars is made with Whole Grain & is a source of Fiber that fills your kid’s tummy. It is high in Calcium & Protein that fuel your child’s growing body. It has 10 essential vitamins & minerals like Iron, Zinc, B Vitamins & Vitamin C for your active kids. Gives your kid 66% Calcium & 31% Protein of a Day’s Requirement: 30g Kellogg’s Chocos Moons & Stars + 200ml cow’s milk provides 66% of the day’s RDA for Calcium and 31% of the day’s RDA for Protein. Makes Milk Chocolaty & Crunchy: Kellogg’s Chocos Moons & Stars makes milk chocolaty and crunchy so your kid will love it!",
+        "key_features": "Kellogg’s Chocos Moons & Stars is a nourishing & solid breakfast for kids. It makes milk chocolaty and delicious.\nKellogg’s Chocos Moons & Stars has the goodness of Whole Grain & is a source of Fiber. It is high in Calcium & Protein that is essential for your child’s growing body.\nKellogg’s Moons & Stars is enriched with 10 essential vitamins & minerals like Iron, Zinc, B Vitamins & Vitamin C for your active kids.\nKellogg’s Chocos Moons & Stars + 200ml cow’s milk provides 66% of the day’s RDA for Calcium and 31% of the day’s RDA for Protein",
+        "ingredients": "Whole Wheat Flour (28%), Sugar, Wheat Flour, Corn Flour, Cocoa Solids (Defatted - 5%), Edible Vegetable Oil, Minerals, Malt Extract, Iodized Salt, Colour (INS 150D), Vitamins and Antioxidant (INS 320), Contains Permitted Natural Colour and Added Flavoring Substances - Cream, Contains Gluten, May Contain Traces Of Almond (Tree Nut)",
+        "unit_price": 0.3075,
+        "shelf_life": "9 months",
+        "manufacturer_details": "Kelloggs India Pvt Ltd, Plot No. L2 & L3, Taloja MIDC, Dist. Rajgad, Maharashtra - 410208",
+        "marketed_by": "Kelloggs India Pvt Ltd, Plot No. L2 & L3, Taloja MIDC, Dist. Rajgad, Maharashtra - 410208",
+        "disclaimer": "Every effort is made to maintain the accuracy of all information. However, actual product packaging and materials may contain more and/or different information. It is recommended not to solely rely on the information presented.",
+        "country_of_origin": "India",
+        "customer_care_details": {
+          "email": "info@blinkit.com",
+          "customer_care_number": "1-800-208-8888"
+        },
+        "product_class": "Packaged Goods",
+        "seller": "LOVEEY TRADING INDIA PRIVATE LIMITED",
+        "expiry_date": "2023-05-06",
+        "reviews": {
+          "reviews_list": [],
+          "show_new_badge": true,
+          "title": "Customer Reviews"
+        }
+      },
+      {
+        "id": "160",
+        "title": "Amul Butter (100 g)",
+        "brand": "Amul",
+        "type": "Butter",
+        "unit": "100 g",
+        "price": 52,
+        "inventory": 50,
+        "rating": 0,
+        "image_url": "https://cdn.grofers.com/app/images/products/sliding_image/159a.jpg?ts=1654778815"
+      },
+      {
+        "id": "63628",
+        "title": "Amul Butter (200 g)",
+        "brand": "Amul",
+        "type": "Butter",
+        "unit": "200 g",
+        "price": 106,
+        "inventory": 29,
+        "rating": 0,
+        "image_url": "https://cdn.grofers.com/app/images/products/sliding_image/63628a.jpg?ts=1590039976"
+      },
+      {
+        "id": "55504",
+        "title": "Amul Garlic & Herbs Butter",
+        "brand": "Amul",
+        "type": "Butter",
+        "unit": "100 g", 
+        "price": 33,
+        "inventory": 9,
+        "rating": 0,
+        "image_url": "https://cdn.grofers.com/app/images/products/sliding_image/55504a.jpg?ts=1634565829"
+      },
+      {
+        "id": "480924",
+        "title": "Tata Soulfull Ragi Bites Chocos (No Maida)",
+        "brand": "Tata Soulfull",
+        "type": "Chocos",
+        "unit": "375 g",
+        "price": 213,
+        "inventory": 2,
+        "rating": 0,
+        "image_url": "https://cdn.grofers.com/app/images/products/sliding_image/480924a.jpg?ts=1656335394"
+      }
+    ]
+  }
+  
