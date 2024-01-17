@@ -25,19 +25,27 @@
   "cart": [
     {
       "title": "Roli Chawal",
-      "quantity": 1,
+      "quantity": "1 set",
       "image": "https://cdn.grofers.com/assets/ui/search_roli.png",
-      "totalQuantity": 1,
+      "totalQuantity": 2,
       "price": "₹80",
-      "id": 3
+      "id": 1
     },
     {
-      "title": "Atta",
-      "quantity": "5 kg",
-      "image": "https://cdn.grofers.com/assets/ui/atta.png",
+      "title": "Rakhi",
+      "quantity": "1 unit",
+      "image": "https://cdn.grofers.com/assets/ui/search_rakhi.png",
       "totalQuantity": 3,
-      "price": "₹30",
-      "id": 4
+      "price": "₹200",
+      "id": 2
+    },
+    {
+      "title": "Indian Sweets",
+      "quantity": "500 gm",
+      "image": "https://cdn.grofers.com/assets/ui/search_kajukatli.png",
+      "totalQuantity": 4,
+      "price": "₹150",
+      "id": 3
     }
   ]
 }

@@ -1,28 +1,28 @@
-// import { dbhost } from "../../Api/EndPoints";
-// import axios from "axios";
-// import { useState } from "react";
+import { dbhost } from "../../Api/EndPoints";
+import axios from "axios";
+import { useState } from "react";
 
 
 export const Login = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     axios.get(`${dbhost}/login`,{
-  //       email : email,
-  //       password : password
-  //     });
-  //     console.log('Login successful:', response.data);
-  //     // Handle successful login, e.g., redirect to a new page or update application state
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      axios.get(`${dbhost}/login`,{
+        email : email,
+        password : password
+      });
+      console.log('Login successful:', e.data);
+      // Handle successful login, e.g., redirect to a new page or update application state
+    } catch (error) {
+      console.log(error);
+    }
 
    
    
-  // }
+  }
 
   return (
     <form className="space-y-6" >
@@ -40,8 +40,8 @@ export const Login = () => {
           required
           className="mt-1 p-2 w-full border rounded-md"
           placeholder="Suresh@gmail.com"
-          // value={email}
-          // onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
 
         />
       </div>
@@ -60,8 +60,8 @@ export const Login = () => {
           required
           className="mt-1 p-2 w-full border rounded-md"
           placeholder="********"
-          // value={password}
-          // onChange={(e)=> setPassword(e.target.value) }
+          value={password}
+          onChange={(e)=> setPassword(e.target.value) }
         />
       </div>
 

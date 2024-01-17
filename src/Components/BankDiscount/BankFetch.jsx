@@ -26,7 +26,7 @@ export const FetchBankOffer = () => {
 
   return (
     <div>
-      <h1 className=" text-lg flex items-center justify-between">Bank Discount Offers</h1>
+      <h1 className=" text-bold flex items-center justify-between ">Bank Discount Offers</h1>
       <BankDiscountCards data={jsonData} />
     </div>
   );

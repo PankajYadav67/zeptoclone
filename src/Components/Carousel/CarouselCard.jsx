@@ -19,6 +19,7 @@ export const CarouselCard = ({ offer }) => {
             id: offer.id,
             title: offer.keyword,
             quantity: offer.quantity,
+            image: offer.image_url,
             totalQuantity: count,
             price: offer.price,
 
