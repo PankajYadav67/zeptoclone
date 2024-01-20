@@ -10,9 +10,9 @@ export const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      axios.get(`${dbhost}/login`,{
-        email : email,
-        password : password
+      axios.get(`${dbhost}/auth/login`, {
+        email: email,
+        password: password
       });
       console.log('Login successful:', e.data);
       // Handle successful login, e.g., redirect to a new page or update application state
@@ -20,12 +20,10 @@ export const Login = () => {
       console.log(error);
     }
 
-   
-   
   }
 
   return (
-    <form className="space-y-6" >
+    <form className="space-y-6" onSubmit={handleLogin} >
       <div >
         <label
           htmlFor="email"
@@ -61,7 +59,7 @@ export const Login = () => {
           className="mt-1 p-2 w-full border rounded-md"
           placeholder="********"
           value={password}
-          onChange={(e)=> setPassword(e.target.value) }
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 

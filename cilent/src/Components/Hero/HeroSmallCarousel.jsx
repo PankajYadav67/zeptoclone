@@ -26,11 +26,11 @@ export const HeroSmallCarousel = () => {
     console.log('activeIndex:', activeIndex);
 
     return (
-        <div className="relative max-w-full overflow-hidden">
+        <div className="relative h-[358px] bg-cover overflow-hidden">
             {images.map((imageUrl, index) => (
                 <div
                     key={index}
-                    className={`absolute top-0 left-0 w-full h-full opacity-${index === activeIndex ? '100' : '0'} transition-opacity duration-500 ease-in-out`}
+                    className={`absolute top-0 left-0 h-[340px] w-[580px] opacity-${index === activeIndex ? '100' : '0'} transition-opacity duration-500 ease-in-out`}
                 >
                     <img
                         src={imageUrl}

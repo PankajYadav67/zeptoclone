@@ -9,7 +9,7 @@ export const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [name, setName] =useState("");
+  const [username, setUsername] =useState("");
   const [open, setOpen] = useState(false);
 
   const handleClose = (_, reason) => {
@@ -21,10 +21,10 @@ export const Signup = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    axios.post(`${dbhost}/login`, {
+    axios.post(`${dbhost}/auth/login`, {
       email,
       password,
-      name,
+      username,
       phoneNumber
     })
       .then((response) => {
@@ -42,19 +42,19 @@ export const Signup = () => {
 
       <div>
         <label
-          htmlFor="name"
+          htmlFor="username"
           className="block text-sm font-medium text-gray-700"
         >
-          Full Name
+          Username
         </label>
         <input
-          id="name"
+          id="username"
           type="text"
           required
           className="mt-1 p-2 w-full border rounded-md"
           placeholder="Suresh Yadav"
-          value={name}
-          onChange={(e)=>setName(e.target.value)}
+          value={username}
+          onChange={(e)=>setUsername(e.target.value)}
         />
       </div>
 

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import BigHero1 from "../Assets/BigHero/BigHero2.png";
+import BigHero2 from "../Assets/BigHero/bigHero.png";
 
 export const HeroCarousel = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const images = [
-
         'https://cdn.zeptonow.com/production///tr:w-969,ar-969-558,pr-true,f-webp,q-80/inventory/banner/68d96cc8-7597-459c-9c85-fa9995285026.png',
         'https://cdn.zeptonow.com/production///tr:w-969,ar-969-558,pr-true,f-webp,q-80/inventory/banner/91abac22-7442-41d2-84cf-147a1b703c7c-Banner_Carousel_Here.png',
+     
+        BigHero2,
     ];
 
     const handleNext = () => {
@@ -21,7 +24,7 @@ export const HeroCarousel = () => {
         const interval = setInterval(handleNext, 5000); // Auto-advance every 5 seconds
 
         return () => clearInterval(interval);
-    }, []);
+    }, [handleNext]);
 
     return (
         <div className="relative h-[720px] bg-cover overflow-hidden">
@@ -35,7 +38,7 @@ export const HeroCarousel = () => {
                         <img
                             src={image}
                             alt={`Carousel Image ${index}`}
-                            className="object-cover w-full h-full"
+                            className="object-cover w-full bg-cover h-full"
                         />
                     </a>
                 </div>
