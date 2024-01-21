@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { dbhost } from "../../Api/EndPoints";
 import axios from "axios";
 import Snackbar from '@mui/joy/Snackbar';
 
+const URL = "https://zepto-backend-qvno.onrender.com";
 
 
 export const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [username, setUsername] =useState("");
+  const [phonenumber, setPhonenumber] = useState("");
+  const [username, setUsername] = useState("");
   const [open, setOpen] = useState(false);
 
   const handleClose = (_, reason) => {
@@ -19,14 +19,20 @@ export const Signup = () => {
     setOpen(false);
   };
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    axios.post(`${dbhost}/auth/login`, {
+
+    await axios.post(`${URL}/auth/signup`, {
       email,
       password,
       username,
-      phoneNumber
-    })
+      phonenumber
+    },
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
       .then((response) => {
         // Handle the successful signup response here
         console.log('Signup successful:', response.data);
@@ -54,7 +60,7 @@ export const Signup = () => {
           className="mt-1 p-2 w-full border rounded-md"
           placeholder="Suresh Yadav"
           value={username}
-          onChange={(e)=>setUsername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
         />
       </div>
 
@@ -71,8 +77,8 @@ export const Signup = () => {
           required
           className="mt-1 p-2 w-full border rounded-md"
           placeholder="9967917448"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
+          value={phonenumber}
+          onChange={(e) => setPhonenumber(e.target.value)}
         />
       </div>
 
@@ -101,7 +107,7 @@ export const Signup = () => {
           htmlFor="password"
           className="block text-sm font-medium text-gray-700"
         >
-         Password
+          Password
         </label>
         <input
           id="password"

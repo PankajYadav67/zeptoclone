@@ -1,21 +1,33 @@
 import { dbhost } from "../../Api/EndPoints";
 import axios from "axios";
 import { useState } from "react";
-
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
+  const URL = "https://zepto-backend-qvno.onrender.com";
+
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      axios.get(`${dbhost}/auth/login`, {
+      const response = await axios.post(`${URL}/auth/login`, {
         email: email,
         password: password
       });
-      console.log('Login successful:', e.data);
-      // Handle successful login, e.g., redirect to a new page or update application state
+      console.log('Login successful:', response.data.payload);
+
+      const { _id, username, token } = response.data.payload;
+
+      localStorage.setItem("_id", _id);
+      localStorage.setItem("username", username);
+      localStorage.setItem("token", token);
+
+      navigate("/");
+
     } catch (error) {
       console.log(error);
     }

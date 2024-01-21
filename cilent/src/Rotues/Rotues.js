@@ -8,6 +8,7 @@ import { LoginMerge } from "../Components/Login/LoginMerge";
 import { Cart } from "../Components/Cart/Cart";
 import { Products } from "../Components/Product/Products";
 import { Product } from "../Components/Product/Product";
+import { MyAccount } from "../Components/Login/MyAccount";
 
 
 //Main Routes Function
@@ -17,8 +18,9 @@ export const RoutesMain = () => {
       <ZeptoNavbar/>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/myaccount" element={<MyAccount />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<LoginMerge />} />
+        <Route path="/auth/login" element={<LoginMerge />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/products" element={<Products />} />
         <Route path="*" element={<DefaultRoute/>}/>

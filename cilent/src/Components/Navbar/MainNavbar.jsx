@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LocationCard } from '../Loaction/LocationCard';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +7,18 @@ import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 
 export const ZeptoNavbar = () => {
   const [showCard, setShowCard] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const isLoggedIn = localStorage.getItem('_id') !== null && localStorage.getItem('username');
+
+  useEffect(() => {
+    // Check if both _id and username are present in localStorage
+    const id = localStorage.getItem('_id');
+    const username = localStorage.getItem('username');
+    setIsLoggedIn(id !== undefined && username !== undefined);
+  }, [isLoggedIn]);
+
+
 
   const handleLocationClick = () => {
     setShowCard(true);
@@ -41,11 +53,19 @@ export const ZeptoNavbar = () => {
 
       </div>
 
-      <Link to="/login">
-        <div className="font-Segoe UI Symbol text-lg flex items-center justify-between	" >
-          <p className="ml-2 text-lg">My Account</p>
-        </div>
-      </Link>
+      {isLoggedIn ? (
+          <Link to="/myaccount">
+            <div className="font-Segoe UI Symbol text-lg flex items-center justify-between">
+              <p className="ml-2 text-lg">My Account</p>
+            </div>
+          </Link>
+        ) : (
+          <Link to="/auth/login">
+            <div className="font-Segoe UI Symbol text-lg flex items-center justify-between">
+              <p className="ml-2 text-lg">Login</p>
+            </div>
+          </Link>
+        )}
 
       <Link to="/cart">
       <div className="h-12 grid items-center my-3 justify-center w-full md:w-40 md:items-center md:justify-center md:my-2 md:ml-4">

@@ -24,6 +24,9 @@ authRouter.post("/signup", async (req, res) => {
   }
 });
 
+
+
+
 authRouter.post("/login", async (req, res) => {
   try {
     // const { username, email,password } = req.body;
@@ -35,11 +38,13 @@ authRouter.post("/login", async (req, res) => {
 
     if (verifyUser) {
       // User found, generate payload and send response
-      let { username, _id } = verifyUser;
+      let { username,  email, _id } = verifyUser;
       let payload = {
         username,
+        email,
+        phonenumber,
         _id,
-        "token" : 54321
+        token: 54321,
       };
       res.send({ payload });
     } else {
