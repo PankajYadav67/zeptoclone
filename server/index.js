@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const authRouter = require("./route/auth.route");
 const connection = require("./config/db");
+const cartRouter = require("./route/cart.route");
 
 require("dotenv").config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.text());
 
 app.use("/auth", authRouter);
+app.use("/cart", cartRouter);
 
 app.get("/", (req, res) => {
   res.send(
