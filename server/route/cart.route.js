@@ -35,9 +35,9 @@ cartRouter.get("/:username", async (req, res) => {
 
     // Token check
 
-    if (req.body.token !== 54321) {
-      return res.status(401).send({ message: "Invalid token" });
-    }
+    // if (req.body.token !== 54321) {
+    //   return res.status(401).send({ message: "Invalid token" });
+    // }
 
     if (carts.length === 0) {
       // No carts found for the given username

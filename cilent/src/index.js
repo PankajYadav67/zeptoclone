@@ -9,6 +9,8 @@ import { store } from "./Redux/store";
 import { AuthProvider } from "./Context/AuthContext";
 
 axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.headers.patch["Content-Type"] = "application/json";
+axios.defaults.headers.get["Content-Type"] = "application/json";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
