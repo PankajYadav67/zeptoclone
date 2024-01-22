@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.text());
 
 app.use("/auth", authRouter);
-app.use("/cart", cartRouter);
+app.use(`/cart`, cartRouter);
 
 app.get("/", (req, res) => {
   res.send(

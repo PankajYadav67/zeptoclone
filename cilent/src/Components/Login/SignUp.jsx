@@ -1,8 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import Snackbar from '@mui/joy/Snackbar';
+import { USER_SIGNUP } from "../../Api/EndPoints";
 
-const URL = "https://zepto-backend-qvno.onrender.com";
+
 
 
 export const Signup = () => {
@@ -11,6 +12,7 @@ export const Signup = () => {
   const [phonenumber, setPhonenumber] = useState("");
   const [username, setUsername] = useState("");
   const [open, setOpen] = useState(false);
+
 
   const handleClose = (_, reason) => {
     if (reason === "clickaway") {
@@ -22,7 +24,7 @@ export const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    await axios.post(`${URL}/auth/signup`, {
+    await axios.post(USER_SIGNUP, {
       email,
       password,
       username,

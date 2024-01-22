@@ -1,28 +1,18 @@
-const host = "http://localhost:3000";
-export const dbhost = "http://localhost:8080"; //assuming db.json run on 
 
-export const USER_GET = `${host}/user`;
-export const USER_LOGIN = `${host}/user/login`;
-export const USER_SIGNUP = `${host}/user/signup`;
+const URL = "https://zepto-backend-qvno.onrender.com"; //assuming this backend server run on 
 
-export const CAOUSEL_AD_GET = `${host}/caousel-ad`;
 
-export const PRODUCT = `${host}/product`;
-export const PRODUCT_SEARCH = `${host}/product-search`;
-export const PRODUCT_DETAILS = `${host}/product-details`
+export const USER_LOGIN = `${URL}/auth/login`;
+export const USER_SIGNUP = `${URL}/auth/signup`;
 
-export const MAIN_CATEGORY_GET = `${host}/mainCategory`;
-export const SUB_CATEGORY_GET = `${host}/subCategory`;
 
-export const CART = `${host}/cart`;
-export const CART_ADD = `${host}/cart/add`;
-export const CART_UPDATE = `${host}/cart/update`;
+export const PRODUCT = `${URL}/product`;
+export const PRODUCT_SEARCH = `${URL}/product-search`;
+export const PRODUCT_DETAILS = `${URL}/product-details`
 
-export const ADDRESS = `${host}/address`;
-export const ADDRESS_CREATE = `${host}/addressCreate`;
+export const MAIN_CATEGORY_GET = `${URL}/mainCategory`;
+export const SUB_CATEGORY_GET = `${URL}/subCategory`;
 
-export const ORDER_CREATE = `${host}/order/create`;
-export const ORDER = `${host}/order`;
-export const ORDER_SUCCESS = `${host}/order/orderSuccess`;
-export const ORDER_FAILED = `${host}/order/orderFailed`;
+
+
 

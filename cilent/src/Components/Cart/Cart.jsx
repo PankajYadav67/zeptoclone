@@ -4,9 +4,10 @@ import {GroceryItem} from './GroceryItem';
 
 export const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
+  
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/cart`)
+    axios.get(`${URL}/cart`)
       .then((response) => {
         console.log(response.data);
         setCartItems(response.data);

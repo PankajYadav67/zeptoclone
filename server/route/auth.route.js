@@ -29,8 +29,6 @@ authRouter.post("/signup", async (req, res) => {
 
 authRouter.post("/login", async (req, res) => {
   try {
-    // const { username, email,password } = req.body;
-
     const verifyUser = await UserModel.findOne({
       $or: [{ username: req.body.username }, { email: req.body.email }],
       $and: [{ password: req.body.password }],
@@ -38,7 +36,7 @@ authRouter.post("/login", async (req, res) => {
 
     if (verifyUser) {
       // User found, generate payload and send response
-      let { username,  email, _id } = verifyUser;
+      let { username, phonenumber, email, _id } = verifyUser;
       let payload = {
         username,
         email,

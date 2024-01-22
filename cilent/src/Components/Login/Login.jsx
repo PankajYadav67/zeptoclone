@@ -1,20 +1,20 @@
-import { dbhost } from "../../Api/EndPoints";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { USER_LOGIN } from "../../Api/EndPoints";
+import { useAuth } from "../../Context/AuthContext";
 
 export const Login = () => {
-  const URL = "https://zepto-backend-qvno.onrender.com";
-
   const navigate = useNavigate();
+  const {login} = useAuth();
 
-  const [email, setEmail] = useState("");
+  const [email,setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${URL}/auth/login`, {
+      const response = await axios.post(USER_LOGIN, {
         email: email,
         password: password
       });
@@ -26,7 +26,8 @@ export const Login = () => {
       localStorage.setItem("username", username);
       localStorage.setItem("token", token);
 
-      navigate("/");
+      login({username});
+      navigate(`/${username}`);
 
     } catch (error) {
       console.log(error);
@@ -41,7 +42,7 @@ export const Login = () => {
           htmlFor="email"
           className="block text-sm font-medium text-gray-700"
         >
-          Email address/ Username
+        Email
         </label>
         <input
           id="email"

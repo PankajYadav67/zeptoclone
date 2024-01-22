@@ -1,13 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../Context/AuthContext';
 
 export const MyAccount = () => {
   const navigate = useNavigate();
+  const {logout,username} = useAuth();
 
   const handleLogout = () => {
-    // Clear local storage and navigate to the login page
-    localStorage.clear();
-    navigate('/login');
+    // Call the logout function from the AuthContext to update the context
+    logout();
+    navigate('/auth/login');
   };
 
   return (
@@ -15,7 +17,7 @@ export const MyAccount = () => {
       <h2 className="text-2xl font-bold mb-4">Account Overview</h2>
       <div className="mb-4">
         <p className="text-gray-700">
-          <span className="font-bold">Username:</span> {localStorage.getItem('username')}
+          <span className="font-bold">Username:</span> {username}
         </p>
         <p className="text-gray-700">
           <span className="font-bold">_id:</span> {localStorage.getItem('_id')}
