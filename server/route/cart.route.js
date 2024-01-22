@@ -76,7 +76,7 @@ cartRouter.patch("/:username", async (req, res) => {
     }
 
     // Update the totalquantity field with the new value
-    cart.totalquantity += req.body.totalquantity;
+    cart.totalquantity = req.body.totalquantity;
 
     // Save the updated cart to the database
     const updatedCart = await cart.save();

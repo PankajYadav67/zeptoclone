@@ -13,7 +13,8 @@ import { useAuth } from "../Context/AuthContext";
 
 //Main Routes Function
 export const RoutesMain = () => {
-  const { isLoggedIn, username } = useAuth();
+  const { isLoggedIn } = useAuth();
+  const {username} = useAuth().userData;
   return (
     <div>
       <ZeptoNavbar />

@@ -1,5 +1,5 @@
 
-const URL = "https://zepto-backend-qvno.onrender.com"; //assuming this backend server run on 
+export const URL = "https://zepto-backend-qvno.onrender.com"; //assuming this backend server run on 
 
 
 export const USER_LOGIN = `${URL}/auth/login`;

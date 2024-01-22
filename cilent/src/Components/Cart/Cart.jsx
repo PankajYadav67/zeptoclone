@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {GroceryItem} from './GroceryItem';
+import { useAuth } from '../../Context/AuthContext';
 
 export const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
+  const {username} =useAuth().userData;
   
 
   useEffect(() => {
-    axios.get(`${URL}/cart`)
+    axios.get(`${URL}/cart/${username}`,{
+      token: 54321
+    })
       .then((response) => {
-        console.log(response.data);
-        setCartItems(response.data);
+        console.log(response.carts);
+        setCartItems(response.carts);
       })
       .catch((error) => console.error('Error fetching cart data:', error));
-  }, []);
+  }, [username]);
 
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => {

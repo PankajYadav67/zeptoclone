@@ -6,9 +6,9 @@ import { useAuth } from "../../Context/AuthContext";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const {login} = useAuth();
+  const { login } = useAuth();
 
-  const [email,setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
@@ -20,13 +20,13 @@ export const Login = () => {
       });
       console.log('Login successful:', response.data.payload);
 
-      const { _id, username, token } = response.data.payload;
+      const { _id, username, phonenumber, token } = response.data.payload;
 
       localStorage.setItem("_id", _id);
       localStorage.setItem("username", username);
       localStorage.setItem("token", token);
 
-      login({username});
+      login({ username, email,  phonenumber,token,_id });
       navigate(`/${username}`);
 
     } catch (error) {
@@ -42,7 +42,7 @@ export const Login = () => {
           htmlFor="email"
           className="block text-sm font-medium text-gray-700"
         >
-        Email
+          Email
         </label>
         <input
           id="email"

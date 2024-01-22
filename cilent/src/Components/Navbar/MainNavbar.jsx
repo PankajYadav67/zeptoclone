@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LocationCard } from '../Loaction/LocationCard';
+import { LocationCard } from '../Location/LocationCard';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,8 @@ import { useAuth } from '../../Context/AuthContext';
 
 export const ZeptoNavbar = () => {
   const [showCard, setShowCard] = useState(false);
-  const { username, isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
+  const {username} = useAuth().userData;
 
 
   const handleLocationClick = () => {
@@ -18,13 +19,19 @@ export const ZeptoNavbar = () => {
   return (
     <div className="  flex flex-col py-1 px-4 overflow-hidden md:flex-row justify-evenly items-center left-0 top-14 sm:top-0 w-full z-[200] lg:px-16 bg-[#3a0463] h-20 font-medium text-white">
       <div className="w-full md:w-24 mb-4 md:mb-0 ">
-        <Link to="/">
+      {isLoggedIn ?(  <Link to={`/${username}`}>
           <img
             className="w-full h-auto object-contain"
             src="https://www.zeptonow.com/images/logo.svg"
             alt="logo"
           />
-        </Link>
+        </Link>): (  <Link to="/">
+          <img
+            className="w-full h-auto object-contain"
+            src="https://www.zeptonow.com/images/logo.svg"
+            alt="logo"
+          />
+        </Link>)}
       </div>
 
       <div className="h-9 mt-2 opacity-50 text-2xl">

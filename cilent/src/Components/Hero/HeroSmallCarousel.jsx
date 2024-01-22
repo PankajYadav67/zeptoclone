@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export const HeroSmallCarousel = () => {
     const [activeIndex, setActiveIndex] = useState(2);
@@ -22,8 +22,6 @@ export const HeroSmallCarousel = () => {
         console.log('Next Slide Clicked');
         setActiveIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
     };
-
-    console.log('activeIndex:', activeIndex);
 
     return (
         <div className="relative h-[358px] bg-cover overflow-hidden">

@@ -3,34 +3,53 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import Axios from "axios";
+import { URL } from "../../Api/EndPoints";
+import { useAuth } from '../../Context/AuthContext';
 
 export const CarouselCard = ({ offer }) => {
+    const { username } = useAuth().userData;
     const [count, setCount] = useState(0);
+
 
     const handlePlus = () => {
         setCount(count + 1);
     }
+
     const handleMinu = () => {
         if (count > 0) setCount(count - 1);
     }
     const handleAddToCart = () => {
-        // Make a POST request to your server with the offer details
-        Axios.post('/cart', {
-            id: offer.id,
-            title: offer.keyword,
-            quantity: offer.quantity,
-            image: offer.image_url,
-            totalQuantity: count,
-            price: offer.price,
-
-        })
-            .then(response => {
-                console.log('Item added to cart:', response.data);
+        // Make a POST request if count is 0, otherwise make a PATCH request
+        if (count === 0) {
+            Axios.post(`${URL}/cart/${username}`, {
+                username: username,
+                title: offer.keyword,
+                quantity: offer.quantity,
+                image: offer.image_url,
+                totalQuantity: 1,
+                price: offer.price,
+                token: 54321
             })
-            .catch(error => {
-
-                console.error('Error adding item to cart:', error);
-            });
+                .then(response => {
+                    console.log('Item added to cart:', response.data);
+                })
+                .catch(error => {
+                    console.error('Error adding item to cart:', error);
+                });
+        } else {
+            Axios.patch(`${URL}/cart/${username}`, {
+                username: username,
+                title: offer.keyword,
+                totalquantity: count,
+                token: 54321
+            })
+                .then(response => {
+                    console.log('Total quantity updated in cart:', response.data);
+                })
+                .catch(error => {
+                    console.error('Error updating total quantity in cart:', error);
+                });
+        }
     }
 
     return (

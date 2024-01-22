@@ -4,22 +4,39 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState('');
+  const [userData, setUserData] = useState({
+    username: '',
+    email: '',
+    phonenumber: '',
+    _id:'',
+    token:''
+  });
 
   const login = (userData) => {
     // Perform login logic
     setIsLoggedIn(true);
-    setUsername(userData.username);
+    setUserData({
+      username: userData.username,
+      email: userData.email,
+      phonenumber: userData.phonenumber,
+    });
   };
 
   const logout = () => {
     // Perform logout logic
     setIsLoggedIn(false);
-    setUsername('');
+    setUserData({
+      username: '',
+      email: '',
+      phoneNumber: '',
+      _id:'',
+      token:''
+    });
+    localStorage.clear();
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout, username }}>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout, userData }}>
       {children}
     </AuthContext.Provider>
   );
