@@ -37,7 +37,7 @@ cartRouter.post("/:username", checkToken, validateCart, async (req, res) => {
   }
 });
 
-cartRouter.get("/:username", checkToken, async (req, res) => {
+cartRouter.get("/:username", async (req, res) => {
   try {
     const carts = await CartModel.find({ username: req.params.username });
 

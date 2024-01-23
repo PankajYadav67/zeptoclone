@@ -1,8 +1,6 @@
 import axios from "axios";
 import * as types from "./cartActionTypes";
 
-
-
 // Fetch Cart
 export const fetchCartRequest = () => ({
   type: types.FETCH_CART_REQUEST,
@@ -21,9 +19,7 @@ export const fetchCartFailure = (error) => ({
 export const fetchCart = (username) => async (dispatch) => {
   dispatch(fetchCartRequest());
   try {
-    const response = await axios.get(`https://zepto-backend-qvno.onrender.com/cart/${username}` ,{ headers: {
-      Authorization: 54321, // Include your token here
-    },});
+    const response = await axios.get(`https://zepto-backend-qvno.onrender.com/cart/${username}`);
     dispatch(fetchCartSuccess(response.data.carts));
   } catch (error) {
     dispatch(fetchCartFailure(error.message));
@@ -54,3 +50,8 @@ export const updateCartItem = (updatedCartItem) => async (dispatch) => {
     dispatch(updateCartItemFailure(error.message));
   }
 };
+
+// EMPTY / DELETE CARD
+export const emptyCartRequest = () =>({
+  type: types.EMPTY_CART_REQUEST
+})
