@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { GroceryItem } from './GroceryItem';
 import { useAuth } from '../../Context/AuthContext';
-import { URL } from '../../Api/EndPoints';
+import { fetchCart } from '../../Redux/actions/cartActions';
+
+
 
 export const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
-  const { username } = useAuth().userData;
+  const dispatch = useDispatch();
+  const {username} = useAuth().userData; 
+  const cartItems = useSelector((state) => state.cart.cartItems); // Adjust the selector based on your Redux state structure
 
   useEffect(() => {
-    axios.get(`${URL}/cart/${username}`)
-      .then((response) => {
-        console.log(response.data);
-        setCartItems(response.data.carts);
-      })
-      .catch((error) => console.error('Error fetching cart data:', error));
-  }, []);
+    dispatch(fetchCart(username)); // Dispatch the action to fetch cart data
+  }, [dispatch, username]);
 
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => {
@@ -30,7 +28,8 @@ export const Cart = () => {
       {cartItems.length > 0 ? (
         <div>
           {cartItems.map((item) => (
-            <GroceryItem key={item.id} {...item} />
+            // Update the component to use the new structure of cartItems
+            <GroceryItem key={item._id} {...item} />
           ))}
           <div className="flex justify-between mt-4">
             <div className="text-xl font-bold">Total Price: ₹{calculateTotalPrice()}</div>
@@ -47,9 +46,3 @@ export const Cart = () => {
     </div>
   );
 };
-
-
-
-
-
-

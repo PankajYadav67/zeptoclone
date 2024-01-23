@@ -2,113 +2,83 @@ const { Router } = require("express");
 const CartModel = require("../model/cart.model");
 const cartRouter = Router();
 
-cartRouter.post("/:username", async (req, res) => {
+// Middleware for token check
+const checkToken = (req, res, next) => {
+  if (req.body.token !== 54321) {
+    return res.status(401).send({ message: "Invalid token" });
+  }
+  next();
+};
+
+// Middleware for cart validation (if needed)
+const validateCart = (req, res, next) => {
+  // Add validation logic here if necessary
+  next();
+};
+
+cartRouter.post("/:username", checkToken, validateCart, async (req, res) => {
   try {
-    // Check if a cart with the same username or title already exists
     const existingCart = await CartModel.findOne({
       username: req.params.username,
       title: req.body.title,
     });
 
     if (existingCart) {
-      // Cart with the same username,title already exists
       return res.status(401).send({ message: "Cart already exists" });
     }
-    // Token check
-    if (req.body.token !== 54321) {
-      return res.status(401).send({ message: "Invalid token" });
-    }
 
-    // cart doesn't exist, proceed with creating a new cart
     const cartInfo = await CartModel(req.body);
     const savedCart = await cartInfo.save();
-    res.status(200).send({ message: "Successfully registered", savedCart });
-  } catch (error) {
-    res.status(500).send("error");
-  }
-});
 
-cartRouter.get("/:username", async (req, res) => {
-  try {
-    // Retrieve cart information based on the provided username
-    const carts = await CartModel.find({ username: req.params.username });
-
-    // Token check
-
-    // if (req.body.token !== 54321) {
-    //   return res.status(401).send({ message: "Invalid token" });
-    // }
-
-    if (carts.length === 0) {
-      // No carts found for the given username
-      return res
-        .status(404)
-        .send({ message: "No carts found for the username" });
-    }
-
-    res.status(200).send({ message: "Carts retrieved successfully", carts });
+    res.status(200).send({ data: savedCart, message: "Successfully registered" });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Internal Server Error");
+    res.status(500).send({ message: "Internal Server Error" });
   }
 });
 
-cartRouter.patch("/:username", async (req, res) => {
+cartRouter.get("/:username", checkToken, async (req, res) => {
   try {
-    // Token check
-    if (req.body.token !== 54321) {
-      return res.status(401).send({ message: "Invalid token" });
+    const carts = await CartModel.find({ username: req.params.username });
+
+    if (carts.length === 0) {
+      return res.status(404).send({ message: "No carts found for the username" });
     }
 
-    // Find the cart based on the provided username and title
-    const cart = await CartModel.findOne({
-      username: req.params.username,
-      $and: [
-        {
-          title: req.body.title,
-        },
-      ],
-    });
+    res.status(200).send({ data: { carts }, message: "Carts retrieved successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+
+cartRouter.patch("/:username", checkToken, async (req, res) => {
+  try {
+    const cart = await CartModel.findOneAndUpdate(
+      { username: req.params.username, title: req.body.title },
+      { totalquantity: req.body.totalquantity },
+      { new: true } 
+    );
 
     if (!cart) {
-      // Cart not found
       return res.status(404).send({ message: "Cart not found" });
     }
 
-    // Update the totalquantity field with the new value
-    cart.totalquantity = req.body.totalquantity;
-
-    // Save the updated cart to the database
-    const updatedCart = await cart.save();
-
-    res
-      .status(200)
-      .send({ message: "Total quantity updated successfully", updatedCart });
+    res.status(200).send({ data: { updatedCart: cart }, message: "Total quantity updated successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Internal Server Error");
+    res.status(500).send({ message: "Internal Server Error" });
   }
 });
 
-// empty cart button
-cartRouter.delete("/:username", async (req, res) => {
+cartRouter.delete("/:username", checkToken, async (req, res) => {
   try {
-    // Token check
-    if (req.body.token !== 54321) {
-      return res.status(401).send({ message: "Invalid token" });
-    }
+    const cart = await CartModel.deleteMany({ username: req.params.username });
 
-    // Find the cart based on the provided username
-    const cart = await CartModel.deleteMany({
-      username: req.params.username,
-    });
-
-    res
-      .status(200)
-      .send({ message: "The cart has been successfully emptied.", cart });
+    res.status(200).send({ data: { cart }, message: "The cart has been successfully emptied." });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Internal Server Error");
+    res.status(500).send({ message: "Internal Server Error" });
   }
 });
 

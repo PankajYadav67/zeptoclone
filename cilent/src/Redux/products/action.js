@@ -1,5 +1,5 @@
 import * as types from "./actionType";
-import axios, { Axios }  from "axios";
+import  { Axios }  from "axios";
 
 export const FetchDataRequest = (payload) => {
   return {
@@ -58,29 +58,3 @@ export const getSingleProduct = (id) => (dispatch) => {
     .catch((err) => dispatch(GetSingleProductFailure(err.data)));
 };
 
-// Fetching Data for Cart
-export const fetchCartRequest = () => {
-  return {
-    type: types.FETCH_CART_REQUEST,
-  };
-};
-export const fetchCartSuccess = (payload) => {
-  return {
-    type: types.FETCH_CART_SUCCESS,
-    payload,
-  };
-};
-export const fetchCartFailure = (payload) => {
-  return {
-    type: types.FETCH_CART_FAILURE,
-    payload,
-  };
-};
-
-//Fetch function for cart products
-export const FetchCart = (product) => (dispatch) => {
-  dispatch(fetchCartRequest());
-  Axios.post('/cart',product)
-    .then((res) => dispatch(fetchCartSuccess(res.data)))
-    .catch((err) => dispatch(fetchCartFailure(err.response.data)));
-};
