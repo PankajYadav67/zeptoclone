@@ -4,7 +4,7 @@ const cartRouter = Router();
 
 // Middleware for token check
 const checkToken = (req, res, next) => {
-  if (req.body.token !== 54321) {
+  if (req.body.token != 54321) {
     return res.status(401).send({ message: "Invalid token" });
   }
   next();

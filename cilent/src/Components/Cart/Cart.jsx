@@ -9,7 +9,7 @@ import { fetchCart } from '../../Redux/actions/cartActions';
 export const Cart = () => {
   const dispatch = useDispatch();
   const {username} = useAuth().userData; 
-  const cartItems = useSelector((state) => state.cart.cartItems); // Adjust the selector based on your Redux state structure
+  const cartItems = useSelector((state) => state.cartData.cartItems); // Adjust the selector based on your Redux state structure
 
   useEffect(() => {
     dispatch(fetchCart(username)); // Dispatch the action to fetch cart data
