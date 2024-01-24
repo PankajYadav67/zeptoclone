@@ -3,12 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../Context/AuthContext';
 import { useDispatch } from 'react-redux';
-import { updateCartItem } from '../../Redux/actions/cartActions';
+import { updateCartItem } from '../../Redux/slice/cartSlice';
 
 export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity }) => {
+  console.log('Props received in GroceryItem:', { _id, title, quantity, price, image, totalquantity });
+  console.log("gfgrhrht5");
   const dispatch = useDispatch();
   const [count, setCount] = useState(totalquantity);
   const { username } = useAuth().userData;
+
 
   useEffect(() => {
     const updatedCartItem = {
@@ -17,6 +20,7 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
       totalquantity: count,
     };
 
+    // Dispatch the updateCartItem action when the count changes
     dispatch(updateCartItem(updatedCartItem));
   }, [dispatch, username, title, count]);
 
@@ -27,7 +31,18 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
   };
 
   const handleAddToCart = () => {
-    setCount(count + 1);
+    setCount((prevCount) => {
+      const newCount = prevCount + 1;
+      const updatedCartItem = {
+        username,
+        title,
+        totalquantity: newCount,
+      };
+
+      // Dispatch the updateCartItem action when adding to cart
+      dispatch(updateCartItem(updatedCartItem));
+      return newCount;
+    });
   };
 
   const handlePlus = () => {
@@ -37,7 +52,6 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
   const calculateTotalPrice = () => {
     return (count * parseFloat(price.slice(1))).toFixed(2);
   };
-
   return (
     <div className="grocery-item-container flex justify-between items-center p-4 border-b">
       <div className="product-details flex items-center">
@@ -51,10 +65,15 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
         <>
           <div className="quantity-info flex items-center space-x-2">
             {count > 0 && (
-              <button className='bg-[#FB3A68] text-white font-thin rounded-tl-lg rounded-bl-lg py-1 px-2' onClick={handleMinus}><FontAwesomeIcon icon={faMinus} size="xs" /></button>
+              <button
+                className='bg-[#FB3A68] text-white font-thin rounded-tl-lg rounded-bl-lg py-1 px-2'
+                onClick={handleMinus}
+              >
+                <FontAwesomeIcon icon={faMinus} size="xs" />
+              </button>
             )}
             <button
-              className={` font-bold   py-1 px-2 ${count === 0 ? " rounded-md border border-[#FB3A68]  text-[#FB3A68]  " : "bg-[#FB3A68] text-white"}`}
+              className={`font-bold py-1 px-2 ${count === 0 ? "rounded-md border border-[#FB3A68] text-[#FB3A68]" : "bg-[#FB3A68] text-white"}`}
               value={count}
               onClick={() => {
                 setCount(1);
@@ -64,7 +83,12 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
               {count === 0 ? " Add " : count}
             </button>
             {count > 0 && (
-              <button className='bg-[#FB3A68] text-white font-thin  rounded-tr-lg rounded-br-lg py-1 px-2' onClick={handlePlus}><FontAwesomeIcon icon={faPlus} size="xs" /></button>
+              <button
+                className='bg-[#FB3A68] text-white font-thin rounded-tr-lg rounded-br-lg py-1 px-2'
+                onClick={handlePlus}
+              >
+                <FontAwesomeIcon icon={faPlus} size="xs" />
+              </button>
             )}
           </div>
           <div className="quantity-value">Qty: {totalquantity}</div>

@@ -1,57 +1,68 @@
-import axios from "axios";
-import * as types from "./cartActionTypes";
+// import axios from "axios";
+// import * as types from "./cartActionTypes";
 
-// Fetch Cart
-export const fetchCartRequest = () => ({
-  type: types.FETCH_CART_REQUEST,
-});
+// // Fetch Cart
+// export const fetchCartRequest = () => ({
+//   type: types.FETCH_CART_REQUEST,
+// });
 
-export const fetchCartSuccess = (cartItems) => ({
-  type: types.FETCH_CART_SUCCESS,
-  payload: cartItems,
-});
+// export const fetchCartSuccess = (cartItems) => ({
+//   type: types.FETCH_CART_SUCCESS,
+//   payload: cartItems,
+// });
 
-export const fetchCartFailure = (error) => ({
-  type: types.FETCH_CART_FAILURE,
-  payload: error,
-});
+// export const fetchCartFailure = (error) => ({
+//   type: types.FETCH_CART_FAILURE,
+//   payload: error,
+// });
 
-export const fetchCart = (username) => async (dispatch) => {
-  dispatch(fetchCartRequest());
-  try {
-    const response = await axios.get(`https://zepto-backend-qvno.onrender.com/cart/${username}`);
-    dispatch(fetchCartSuccess(response.data.carts));
-  } catch (error) {
-    dispatch(fetchCartFailure(error.message));
-  }
-};
+// export const fetchCart = (username) => async (dispatch) => {
+//   console.log("Fetching cart data for:", username);
 
-// Update Cart Item
-export const updateCartItemRequest = (updatedCartItem) => ({
-  type: types.UPDATE_CART_ITEM_REQUEST,
-  payload: updatedCartItem,
-});
+//   dispatch(fetchCartRequest());
 
-export const updateCartItemSuccess = () => ({
-  type: types.UPDATE_CART_ITEM_SUCCESS,
-});
+//   try {
+//     const response = await axios.get(
+//       `https://zepto-backend-qvno.onrender.com/cart/${username}`
+//     );
+//     console.log("Fetched cart data:", response.data.carts);
 
-export const updateCartItemFailure = (error) => ({
-  type: types.UPDATE_CART_ITEM_FAILURE,
-  payload: error,
-});
+//     dispatch(fetchCartSuccess(response.data.carts));
+//   } catch (error) {
+//     console.error("Error fetching cart data:", error);
+//     dispatch(fetchCartFailure(error.message));
+//   }
+// };
 
-export const updateCartItem = (updatedCartItem) => async (dispatch) => {
-  dispatch(updateCartItemRequest(updatedCartItem));
-  try {
-    await axios.patch(`https://zepto-backend-qvno.onrender.com/cart/${updatedCartItem.username}`, updatedCartItem);
-    dispatch(updateCartItemSuccess());
-  } catch (error) {
-    dispatch(updateCartItemFailure(error.message));
-  }
-};
+// // Update Cart Item
+// export const updateCartItemRequest = (updatedCartItem) => ({
+//   type: types.UPDATE_CART_ITEM_REQUEST,
+//   payload: updatedCartItem,
+// });
 
-// EMPTY / DELETE CARD
-export const emptyCartRequest = () =>({
-  type: types.EMPTY_CART_REQUEST
-})
+// export const updateCartItemSuccess = () => ({
+//   type: types.UPDATE_CART_ITEM_SUCCESS,
+// });
+
+// export const updateCartItemFailure = (error) => ({
+//   type: types.UPDATE_CART_ITEM_FAILURE,
+//   payload: error,
+// });
+
+// export const updateCartItem = (updatedCartItem) => async (dispatch) => {
+//   dispatch(updateCartItemRequest(updatedCartItem));
+//   try {
+//     await axios.patch(
+//       `https://zepto-backend-qvno.onrender.com/cart/${updatedCartItem.username}`,
+//       updatedCartItem
+//     );
+//     dispatch(updateCartItemSuccess());
+//   } catch (error) {
+//     dispatch(updateCartItemFailure(error.message));
+//   }
+// };
+
+// // EMPTY / DELETE CARD
+// export const emptyCartRequest = () => ({
+//   type: types.EMPTY_CART_REQUEST,
+// });

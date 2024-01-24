@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import BigHero1 from "../Assets/BigHero/BigHero2.png";
+// import BigHero1 from "../Assets/BigHero/BigHero2.png";
 import BigHero2 from "../Assets/BigHero/bigHero.png";
 
 export const HeroCarousel = () => {
