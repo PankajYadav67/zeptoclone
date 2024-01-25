@@ -5,7 +5,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import { Provider } from "react-redux";
-import  store  from "./Redux/store";
+import  {store}  from "./Redux/store";
 import { AuthProvider } from "./Context/AuthContext";
 
 axios.defaults.headers.post["Content-Type"] = "application/json";
