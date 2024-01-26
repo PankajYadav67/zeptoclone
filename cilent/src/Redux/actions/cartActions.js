@@ -83,7 +83,7 @@ export const emptyCart = (username) => async (dispatch) => {
 
   try {
     await axios.delete(
-      `https://zepto-backend-qvno.onrender.com/cart/${username}`
+      `https://zepto-backend-qvno.onrender.com/cart/${username}/empty`
     );
     dispatch(emptyCartSuccess());
   } catch (error) {

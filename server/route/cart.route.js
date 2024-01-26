@@ -71,9 +71,22 @@ cartRouter.patch("/:username", checkToken, async (req, res) => {
   }
 });
 
-cartRouter.delete("/:username", checkToken, async (req, res) => {
+// empty card
+cartRouter.delete("/:username/empty", checkToken, async (req, res) => {
   try {
     const cart = await CartModel.deleteMany({ username: req.params.username });
+
+    res.status(200).send({ data: { cart }, message: "The cart has been successfully emptied." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+
+// removing one item from the card
+cartRouter.delete("/:username", checkToken, async (req, res) => {
+  try {
+    const cart = await CartModel.deleteOne({ username: req.params.username  , title: res.body.title });
 
     res.status(200).send({ data: { cart }, message: "The cart has been successfully emptied." });
   } catch (error) {
