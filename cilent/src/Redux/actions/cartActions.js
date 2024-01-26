@@ -90,3 +90,30 @@ export const emptyCart = (username) => async (dispatch) => {
     dispatch(emptyCartFailure(error.message));
   }
 };
+
+// REMOVE THE ONE ITEM
+export const removeCartItemRequest = (itemId) => ({
+  type: types.REMOVE_CART_ITEM_REQUEST,
+  payload: itemId,
+});
+
+export const removeCartItemSuccess = () => ({
+  type: types.REMOVE_CART_ITEM_SUCCESS,
+});
+
+export const removeCartItemFailure = (error) => ({
+  type: types.REMOVE_CART_ITEM_FAILURE,
+  payload: error,
+});
+
+export const removeCartItem = (username, itemId) => async (dispatch) => {
+  dispatch(removeCartItemRequest(itemId));
+  try {
+    await axios.delete(
+      `https://zepto-backend-qvno.onrender.com/cart/${username}/${itemId}`
+    );
+    dispatch(removeCartItemSuccess());
+  } catch (error) {
+    dispatch(removeCartItemFailure(error.message));
+  }
+};

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const { username } = useAuth().userData;
   const { isLoggedIn } = useAuth();
 
@@ -19,7 +19,7 @@ export const Cart = () => {
     if (isLoggedIn === true && status === 'idle') {
       dispatch(fetchCart(username));
     }
-  }, [dispatch, username, status, isLoggedIn]);
+  }, [dispatch, username, status, isLoggedIn ]);
 
   const handleEmptyCart = () => {
     dispatch(emptyCart(username));
@@ -37,7 +37,8 @@ export const Cart = () => {
   const calculateTotalCostOrderSummary = () => {
     if (!calculateTotalPriceOrderSummary) return 0;
     return calculateTotalPriceOrderSummary() + deliveryPrice;
-  }
+  };
+
 
   return (
     <div className='bg-[#f6f6f6]'>
@@ -49,8 +50,8 @@ export const Cart = () => {
 
           <div className="w-3/4 bg-white px-10 py-10 rounded">
             <div className="flex justify-between text-center border-b pb-8">
-              <h1 className="font-semibold  text-2xl">Shopping Cart</h1> 
-            
+              <h1 className="font-semibold  text-2xl">Shopping Cart</h1>
+
               <h2 className="font-semibold text-2xl">{cartItems ? `${cartItems.length} Items` : '0 Items'}</h2>
             </div>
             <div className="flex mt-10 mb-5">

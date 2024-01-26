@@ -48,6 +48,26 @@ export const cartReducer = (state = initialState, action) => {
         error: action.payload,
       };
 
+    case types.REMOVE_CART_ITEM_REQUEST:
+      return {
+        ...state,
+        status: "loading",
+      };
+
+    case types.REMOVE_CART_ITEM_SUCCESS:
+      return {
+        ...state,
+        status: "succeeded",
+        error: null,
+      };
+
+    case types.REMOVE_CART_ITEM_FAILURE:
+      return {
+        ...state,
+        status: "failed",
+        error: action.payload,
+      };
+
     default:
       return state;
   }
