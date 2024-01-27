@@ -72,7 +72,7 @@ cartRouter.patch("/:username", checkToken, async (req, res) => {
 });
 
 // empty card
-cartRouter.delete("/:username/empty", checkToken, async (req, res) => {
+cartRouter.delete("/:username/empty", async (req, res) => {
   try {
     const cart = await CartModel.deleteMany({ username: req.params.username });
 
@@ -85,7 +85,7 @@ cartRouter.delete("/:username/empty", checkToken, async (req, res) => {
 
 
 // removing one item from the cart
-cartRouter.delete("/:username/:id", checkToken, async (req, res) => {
+cartRouter.delete("/:username/:id", async (req, res) => {
   try {
     const cart = await CartModel.deleteOne({ username: req.params.username, _id: req.params.id });
 

@@ -106,11 +106,12 @@ export const removeCartItemFailure = (error) => ({
   payload: error,
 });
 
-export const removeCartItem = (username, itemId) => async (dispatch) => {
+export const removeCartItem = (username, itemId,token) => async (dispatch) => {
   dispatch(removeCartItemRequest(itemId));
   try {
     await axios.delete(
-      `https://zepto-backend-qvno.onrender.com/cart/${username}/${itemId}`
+      `https://zepto-backend-qvno.onrender.com/cart/${username}/${itemId}`,
+      token
     );
     dispatch(removeCartItemSuccess());
   } catch (error) {

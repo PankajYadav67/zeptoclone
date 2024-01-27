@@ -15,15 +15,16 @@ export const Cart = () => {
   const deliveryPrice = 40;
   const { cartItems, status, error } = useSelector((state) => state.cartData);
 
+  
+  const handleEmptyCart = () => {
+    dispatch(emptyCart(username));
+  };
+
   useEffect(() => {
     if (isLoggedIn === true && status === 'idle') {
       dispatch(fetchCart(username));
     }
-  }, [dispatch, username, status, isLoggedIn ]);
-
-  const handleEmptyCart = () => {
-    dispatch(emptyCart(username));
-  };
+  }, [dispatch, username, status, isLoggedIn]);
 
   const calculateTotalPriceOrderSummary = () => {
     if (!cartItems) return 0;
@@ -34,11 +35,11 @@ export const Cart = () => {
     }, 0);
 
   };
+
   const calculateTotalCostOrderSummary = () => {
     if (!calculateTotalPriceOrderSummary) return 0;
     return calculateTotalPriceOrderSummary() + deliveryPrice;
   };
-
 
   return (
     <div className='bg-[#f6f6f6]'>
