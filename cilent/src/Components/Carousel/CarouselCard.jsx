@@ -1,56 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faMinus } from "@fortawesome/free-solid-svg-icons";
-import Axios from "axios";
-import { URL } from "../../Api/EndPoints";
+import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from 'react-redux';
+import { addToCart, updateCartItem } from '../../Redux/actions/cartActions';
 import { useAuth } from '../../Context/AuthContext';
 
-export const CarouselCard = ({ offer }) => {
+export const CarouselCard = ({ offer, totalquantity }) => {
+    const dispatch = useDispatch();
     const { username } = useAuth().userData;
-    const [count, setCount] = useState(0);
 
-
-    const handlePlus = () => {
-        setCount(count + 1);
+    const handlePlus = (totalquantity) => {
+        const newCount = totalquantity + 1;
+        handleAddToCart(newCount);
+    }
+    const handleMinus = () => {
+        const newCount = totalquantity + 1;
+        handleAddToCart(newCount);
     }
 
-    const handleMinu = () => {
-        if (count > 0) setCount(count - 1);
-    }
     const handleAddToCart = () => {
-        // Make a POST request if count is 0, otherwise make a PATCH request
-        if (count === 0) {
-            Axios.post(`${URL}/cart/${username}`, {
-                username: username,
-                title: offer.keyword,
-                quantity: offer.quantity,
-                image: offer.image_url,
-                totalQuantity: 1,
-                price: offer.price,
-                token: 54321
-            })
-                .then(response => {
-                    console.log('Item added to cart:', response.data);
-                })
-                .catch(error => {
-                    console.error('Error adding item to cart:', error);
-                });
+        const newCartItem = {
+            username: username,
+            title: offer.keyword,
+            quantity: offer.quantity,
+            image: offer.image_url,
+            totalquantity: totalquantity === 0 ? 1 : totalquantity,
+            price: offer.price,
+            token: 54321,
+        };
+        console.log(totalquantity)
+
+        if (totalquantity === 0) {
+            // Dispatch the addToCart action for a new item
+            dispatch(addToCart(username, newCartItem));
         } else {
-            Axios.patch(`${URL}/cart/${username}`, {
-                username: username,
-                title: offer.keyword,
-                totalquantity: count,
-                token: 54321
-            })
-                .then(response => {
-                    console.log('Total quantity updated in cart:', response.data);
-                })
-                .catch(error => {
-                    console.error('Error updating total quantity in cart:', error);
-                });
+            // Dispatch the updateCartItem action for an existing item
+            dispatch(updateCartItem(newCartItem));
         }
-    }
+    };
+    useEffect(() => {
+        return () => {
+            console.log('Cleanup function executed.');
+            // Additional cleanup code goes here
+        };
+    }, [totalquantity])
 
     return (
         <div className="relative p-4 sm:w-full md:w-1/2 lg:w-1/3">
@@ -61,18 +54,17 @@ export const CarouselCard = ({ offer }) => {
                 <div className="flex flex-col sm:flex-row justify-between items-center">
                     <h6 className='font-bold mb-2 sm:mb-0'>{offer.price}</h6>
                     <div className='flex shadow-2xl mt-2 sm:mt-0'>
-                        {count > 0 && (
-                            <button className='bg-[#FB3A68] text-white font-thin rounded-tl-lg  rounded-bl-lg py-1 px-2' onClick={handleMinu}><FontAwesomeIcon icon={faMinus} size="xs" /></button>
+                        {totalquantity > 0 && (
+                            <button className='bg-[#FB3A68] text-white font-thin rounded-tl-lg  rounded-bl-lg py-1 px-2' onClick={() => handleMinus(totalquantity)}><FontAwesomeIcon icon={faMinus} size="xs" /></button>
                         )}
-                        <button className={` font-bold   py-1 px-2 ${count === 0 ? " rounded-md border border-[#FB3A68]  text-[#FB3A68]  " : "bg-[#FB3A68] text-white"}`} value={count} onClick={() => {
-                            setCount(1);
+                        <button className={`font-bold py-1 px-2 ${totalquantity === 0 ? "rounded-md border border-[#FB3A68] text-[#FB3A68]" : "bg-[#FB3A68] text-white"}`} value={totalquantity} onClick={() => {
                             handleAddToCart();
-
                         }}>
-                            {count === 0 ? " Add " : count}
+                            {console.log(totalquantity)}
+                            {totalquantity == undefined || 0 ? " Add " : totalquantity}
                         </button>
-                        {count > 0 && (
-                            <button className='bg-[#FB3A68] text-white font-thin  rounded-tr-lg rounded-br-lg py-1 px-2' onClick={handlePlus}><FontAwesomeIcon icon={faPlus} size="xs" /></button>
+                        {totalquantity > 0 && (
+                            <button className='bg-[#FB3A68] text-white font-thin rounded-tr-lg rounded-br-lg py-1 px-2' onClick={() => handlePlus(totalquantity)}><FontAwesomeIcon icon={faPlus} size="xs" /></button>
                         )}
                     </div>
                 </div>

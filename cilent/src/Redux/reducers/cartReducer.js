@@ -67,6 +67,25 @@ export const cartReducer = (state = initialState, action) => {
         status: "failed",
         error: action.payload,
       };
+    case types.ADD_TO_CART_REQUEST:
+      return {
+        ...state,
+        status: "loading",
+      };
+
+    case types.ADD_TO_CART_SUCCESS:
+      return {
+        ...state,
+        status: "succeeded",
+        error: null,
+      };
+
+    case types.ADD_TO_CART_FAILURE:
+      return {
+        ...state,
+        status: "failed",
+        error: action.payload,
+      };
 
     default:
       return state;

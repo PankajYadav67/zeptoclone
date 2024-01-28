@@ -17,8 +17,6 @@ export const fetchCartFailure = (error) => ({
 });
 
 export const fetchCart = (username) => async (dispatch) => {
-  console.log("Fetching cart data for:", username);
-
   dispatch(fetchCartRequest());
 
   try {
@@ -106,15 +104,43 @@ export const removeCartItemFailure = (error) => ({
   payload: error,
 });
 
-export const removeCartItem = (username, itemId,token) => async (dispatch) => {
+export const removeCartItem = (username, itemId) => async (dispatch) => {
   dispatch(removeCartItemRequest(itemId));
   try {
     await axios.delete(
-      `https://zepto-backend-qvno.onrender.com/cart/${username}/${itemId}`,
-      token
+      `https://zepto-backend-qvno.onrender.com/cart/${username}/${itemId}`
     );
     dispatch(removeCartItemSuccess());
   } catch (error) {
     dispatch(removeCartItemFailure(error.message));
+  }
+};
+
+// Add to Cart
+export const addToCartRequest = (newCartItem) => ({
+  type: types.ADD_TO_CART_REQUEST,
+  payload: newCartItem,
+});
+
+export const addToCartSuccess = () => ({
+  type: types.ADD_TO_CART_SUCCESS,
+});
+
+export const addToCartFailure = (error) => ({
+  type: types.ADD_TO_CART_FAILURE,
+  payload: error,
+});
+
+export const addToCart = (username, newCartItem) => async (dispatch) => {
+  dispatch(addToCartRequest(newCartItem));
+
+  try {
+    await axios.post(
+      `https://zepto-backend-qvno.onrender.com/cart/${username}`,
+      { ...newCartItem, token: 54321 }
+    );
+    dispatch(addToCartSuccess());
+  } catch (error) {
+    dispatch(addToCartFailure(error.message));
   }
 };
