@@ -15,7 +15,7 @@ export const Cart = () => {
   const deliveryPrice = 40;
   const { cartItems, status, error } = useSelector((state) => state.cartData);
 
-  
+
   const handleEmptyCart = () => {
     dispatch(emptyCart(username));
   };
@@ -127,5 +127,4 @@ export const Cart = () => {
     </div>
   );
 };
-
 

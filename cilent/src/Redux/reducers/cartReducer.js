@@ -1,6 +1,6 @@
 import * as types from "../actions/cartActionTypes";
 
-const initialState = {
+export const initialState = {
   cartItems: [], // Ensure this is set appropriately
   error: null,
   status: "idle", // 'idle', 'loading', 'succeeded', 'failed'

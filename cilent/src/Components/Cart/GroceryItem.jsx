@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../Context/AuthContext';
@@ -8,6 +8,8 @@ import { removeCartItem, updateCartItem } from '../../Redux/actions/cartActions'
 export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity }) => {
   const dispatch = useDispatch();
   const { username } = useAuth().userData;
+  const [localTotalQuantity, setLocalTotalQuantity] = useState(totalquantity);
+
 
   const handleAddToCart = (newCount) => {
     const updatedCartItem = {
@@ -17,16 +19,19 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
       totalquantity: newCount,
     };
     dispatch(updateCartItem(updatedCartItem));
+    setLocalTotalQuantity(newCount);
   }
 
-
-  const handlePlus = (totalquantity) => {
-    const newCount = totalquantity + 1;
+  const handlePlus = () => {
+    const newCount = localTotalQuantity + 1;
     handleAddToCart(newCount);
   }
+
   const handleMinus = () => {
-    const newCount = totalquantity + 1;
-    handleAddToCart(newCount);
+    if (localTotalQuantity > 0){
+      const newCount = localTotalQuantity - 1;
+     handleAddToCart(newCount);
+    }
   }
 
   const calculateTotalPriceCartItem = () => {
@@ -53,7 +58,7 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
 
   return (
     <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
-      
+
       <div className="flex w-2/5">
         <div className="w-20">
           <img className="h-24" src={image} alt="img" />
@@ -71,7 +76,7 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
       </div>
       <div className="flex justify-center w-1/5">
         <FontAwesomeIcon icon={faMinus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={() => handleMinus(totalquantity)} />
-        <input className="mx-2 border text-center w-8" type="text" value={totalquantity} readOnly />
+        <input className="mx-2 border text-center w-8" type="text" value={localTotalQuantity} readOnly />
         <FontAwesomeIcon icon={faPlus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={() => handlePlus(totalquantity)} />
       </div>
       <span className="text-center w-1/5 font-semibold text-sm">{price}</span>
@@ -79,4 +84,3 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
     </div>
   );
 };
-
