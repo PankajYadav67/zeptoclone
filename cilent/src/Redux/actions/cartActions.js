@@ -24,9 +24,6 @@ export const fetchCart = (username) => async (dispatch) => {
       `https://zepto-backend-qvno.onrender.com/cart/${username}`
     );
     // console.log("Fetched cart data:", response.data.data.carts);
-    // console.log("Fetched cart data:", response.data);
-    // console.log("Fetched cart data:", response);
-
     dispatch(fetchCartSuccess(response.data.data.carts));
   } catch (error) {
     console.error("Error fetching cart data:", error);
@@ -40,8 +37,9 @@ export const updateCartItemRequest = (updatedCartItem) => ({
   payload: updatedCartItem,
 });
 
-export const updateCartItemSuccess = () => ({
+export const updateCartItemSuccess = (updatedCartItem) => ({
   type: types.UPDATE_CART_ITEM_SUCCESS,
+  payload: updatedCartItem,
 });
 
 export const updateCartItemFailure = (error) => ({
@@ -52,11 +50,12 @@ export const updateCartItemFailure = (error) => ({
 export const updateCartItem = (updatedCartItem) => async (dispatch) => {
   dispatch(updateCartItemRequest(updatedCartItem));
   try {
-    await axios.patch(
+    const response = await axios.patch(
       `https://zepto-backend-qvno.onrender.com/cart/${updatedCartItem.username}`,
       updatedCartItem
     );
-    dispatch(updateCartItemSuccess());
+    // console.log("Fetched cart data:", response.data.data.updatedCart);
+    dispatch(updateCartItemSuccess(response.data.data.updatedCart));
   } catch (error) {
     dispatch(updateCartItemFailure(error.message));
   }

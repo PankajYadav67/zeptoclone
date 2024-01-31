@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../Context/AuthContext';
 import { useDispatch } from 'react-redux';
+
 import { removeCartItem, updateCartItem } from '../../Redux/actions/cartActions';
 
 export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity }) => {
@@ -19,6 +20,7 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
       totalquantity: newCount,
     };
     dispatch(updateCartItem(updatedCartItem));
+
     setLocalTotalQuantity(newCount);
   }
 
@@ -28,9 +30,9 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
   }
 
   const handleMinus = () => {
-    if (localTotalQuantity > 0){
+    if (localTotalQuantity > 0) {
       const newCount = localTotalQuantity - 1;
-     handleAddToCart(newCount);
+      handleAddToCart(newCount);
     }
   }
 
@@ -44,16 +46,9 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
     return (quantity * parseFloat(price.slice(1))).toFixed(2);
   };
 
-  const handleRemoveCartItem = (itemId) => {
+  const handleRemoveCartItem = useCallback((itemId) => {
     dispatch(removeCartItem(username, itemId));
-  };
-
-  useEffect(() => {
-    return () => {
-      console.log('Cleanup function executed.');
-      // Additional cleanup code goes here
-    };
-  }, [totalquantity]);
+  }, [username, dispatch])
 
 
   return (
@@ -75,9 +70,11 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
         </div>
       </div>
       <div className="flex justify-center w-1/5">
-        <FontAwesomeIcon icon={faMinus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={() => handleMinus(totalquantity)} />
+        <FontAwesomeIcon icon={faMinus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={() => handleMinus()} />
         <input className="mx-2 border text-center w-8" type="text" value={localTotalQuantity} readOnly />
-        <FontAwesomeIcon icon={faPlus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={() => handlePlus(totalquantity)} />
+        <FontAwesomeIcon icon={faPlus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={() =>
+          handlePlus()
+        } />
       </div>
       <span className="text-center w-1/5 font-semibold text-sm">{price}</span>
       <span className="text-center w-1/5 font-semibold text-sm">{calculateTotalPriceCartItem()}</span>

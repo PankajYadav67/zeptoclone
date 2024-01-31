@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GroceryItem } from './GroceryItem';
 import { useAuth } from '../../Context/AuthContext';
 import { emptyCart, fetchCart } from '../../Redux/actions/cartActions';
 import { useNavigate } from "react-router-dom";
+import delivery from "./delivery.jpg";
+
 
 export const Cart = () => {
   const dispatch = useDispatch();
@@ -16,15 +18,15 @@ export const Cart = () => {
   const { cartItems, status, error } = useSelector((state) => state.cartData);
 
 
-  const handleEmptyCart = () => {
+  const handleEmptyCart = useCallback(() => {
     dispatch(emptyCart(username));
-  };
+  }, [])
 
   useEffect(() => {
     if (isLoggedIn === true && status === 'idle') {
       dispatch(fetchCart(username));
     }
-  }, [dispatch, username, status, isLoggedIn]);
+  }, [dispatch, username, status, isLoggedIn, handleEmptyCart]);
 
   const calculateTotalPriceOrderSummary = () => {
     if (!cartItems) return 0;
@@ -45,70 +47,72 @@ export const Cart = () => {
     <div className='bg-[#f6f6f6]'>
 
 
-      {isLoggedIn ? (<div className="container  mx-auto  py-2">
+      {isLoggedIn ? (
+        <>
 
-        <div className="flex shadow-md my-10">
+          <img src={delivery} alt="delivery" />
+          <div className="container  mx-auto  py-1">
+            <div className="flex shadow-md my-10">
 
-          <div className="w-3/4 bg-white px-10 py-10 rounded">
-            <div className="flex justify-between text-center border-b pb-8">
-              <h1 className="font-semibold  text-2xl">Shopping Cart</h1>
+              <div className="w-3/4 bg-white px-10 py-10 rounded">
+                <div className="flex justify-between text-center border-b pb-8">
+                  <h1 className="font-semibold  text-2xl">Shopping Cart</h1>
 
-              <h2 className="font-semibold text-2xl">{cartItems ? `${cartItems.length} Items` : '0 Items'}</h2>
-            </div>
-            <div className="flex mt-10 mb-5">
-              <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
-              <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">Quantity</h3>
-              <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
-              <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
-            </div>
-            {status === 'loading' && <h4>Loading...</h4>}
-            {status === 'failed' && <h4>Error: {error}</h4>}
-            {status === 'succeeded' && cartItems && cartItems.length > 0 && (
-              <>
-                {cartItems.map((item) => (
-                  <GroceryItem key={item._id} {...item} />
-                ))}
-              </>
-            )}
-            <button
-              className="bg-[#FB3A68] rounded-full font-semibold hover:bg-red-600 py-3 text-sm text-white uppercase w-full mt-4"
-              onClick={handleEmptyCart}
-            >
-              Empty Cart
-            </button>
+                  <h2 className="font-semibold text-2xl">{cartItems ? `${cartItems.length} Items` : '0 Items'}</h2>
+                </div>
+                <div className="flex mt-10 mb-5">
+                  <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
+                  <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">Quantity</h3>
+                  <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
+                  <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
+                </div>
+                {status === 'loading' && <h4>Loading...</h4>}
+                {status === 'failed' && <h4>Error: {error}</h4>}
+                {status === 'succeeded' && cartItems && cartItems.length > 0 && (
+                  <>
+                    {cartItems.map((item) => (<GroceryItem key={item._id} {...item} />))}
+                  </>
+                )}
+                <button
+                  className="bg-[#FB3A68] rounded-full font-semibold hover:bg-red-600 py-3 text-sm text-white uppercase w-full mt-4"
+                  onClick={handleEmptyCart}
+                >
+                  Empty Cart
+                </button>
 
 
-          </div>
-
-          <div id="summary" className="w-1/4 px-8 rounded bg-slate-50  py-10">
-            <h1 className="font-semibold text-2xl border-b pb-8">Order Summary</h1>
-
-            <div className="flex justify-between mt-10 mb-5">
-              <span className="font-semibold text-sm uppercase">Items {cartItems ? cartItems.length : 0}</span>
-              <span className="font-semibold text-sm">₹{calculateTotalPriceOrderSummary()}</span>
-            </div>
-            <div className='flex justify-between'>
-              <span className="font-medium inline-block mb-3 text-sm uppercase">Delivery Charges</span>
-              <span className="font-semibold text-sm">₹ {deliveryPrice}</span>
-            </div>
-            <div className="py-10">
-              <label htmlFor="promo" className="font-semibold inline-block mb-3 text-sm uppercase">Promo Code</label>
-              <input type="text" id="promo" placeholder="Enter your code" className="p-2 text-sm w-full rounded" />
-            </div>
-            <button className="bg-red-500 hover:bg-red-600 px-5 py-2 rounded-full text-sm text-white uppercase">Apply</button>
-            <div className="border-t mt-8">
-              <div className="flex font-semibold justify-between py-6 text-sm uppercase">
-                <span>Total cost</span>
-                <span>₹{calculateTotalCostOrderSummary()}</span>
               </div>
-              <button className="bg-[#FB3A68] rounded-full font-semibold hover:bg-red-600 py-3 text-sm text-white uppercase w-full">
-                Checkout
-              </button>
-            </div>
-          </div>
-        </div>
 
-      </div>
+              <div id="summary" className="w-1/4 px-8 rounded bg-slate-50  py-10">
+                <h1 className="font-semibold text-2xl border-b pb-8">Order Summary</h1>
+
+                <div className="flex justify-between mt-10 mb-5">
+                  <span className="font-semibold text-sm uppercase">Items {cartItems ? cartItems.length : 0}</span>
+                  <span className="font-semibold text-sm">₹{calculateTotalPriceOrderSummary()}</span>
+                </div>
+                <div className='flex justify-between'>
+                  <span className="font-medium inline-block mb-3 text-sm uppercase">Delivery Charges</span>
+                  <span className="font-semibold text-sm">₹ {deliveryPrice}</span>
+                </div>
+                <div className="py-10">
+                  <label htmlFor="promo" className="font-semibold inline-block mb-3 text-sm uppercase">Promo Code</label>
+                  <input type="text" id="promo" placeholder="Enter your code" className="p-2 text-sm w-full rounded" />
+                </div>
+                <button className="bg-red-500 hover:bg-red-600 px-5 py-2 rounded-full text-sm text-white uppercase">Apply</button>
+                <div className="border-t mt-8">
+                  <div className="flex font-semibold justify-between py-6 text-sm uppercase">
+                    <span>Total cost</span>
+                    <span>₹{calculateTotalCostOrderSummary()}</span>
+                  </div>
+                  <button className="bg-[#FB3A68] rounded-full font-semibold hover:bg-red-600 py-3 text-sm text-white uppercase w-full">
+                    Checkout
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </>
       ) : ((!cartItems || cartItems.length === 0) && (
         <div className="text-center">
 

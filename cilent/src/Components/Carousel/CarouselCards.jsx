@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { CarouselCard } from './CarouselCard';
+import { CarouselCard, NotLoggedInCarouselCard } from './CarouselCard';
+import { useAuth } from '../../Context/AuthContext';
 
 export const CarouselCards = ({ data }) => {
   const [startIndex, setStartIndex] = useState(0);
+  const { isLoggedIn } = useAuth();
   const cardsPerPage = 5;
 
   const handleNext = () => {
@@ -31,11 +33,20 @@ export const CarouselCards = ({ data }) => {
 
   return (
     <div className="flex items-center">
-      {renderPrevButton}
-      {data.slice(startIndex, startIndex + cardsPerPage).map((offer, index) => (
-        <CarouselCard key={index} offer={offer} />
-      ))}
-      {renderNextButton}
+      {isLoggedIn ?
+        <>
+
+          {renderPrevButton}
+          {data.slice(startIndex, startIndex + cardsPerPage).map((offer, index) => (<CarouselCard key={index} offer={offer} />))}
+          {renderNextButton}
+        </>
+        : <>
+
+          {renderPrevButton}
+          {data.slice(startIndex, startIndex + cardsPerPage).map((offer, index) => (<NotLoggedInCarouselCard key={index} offer={offer} />))}
+          {renderNextButton}
+        </>
+      }
     </div>
   );
 };
