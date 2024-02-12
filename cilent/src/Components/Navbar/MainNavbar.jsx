@@ -1,31 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LocationCard } from '../Location/LocationCard';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from '../../Context/AuthContext';
-
+import { SearchCard } from "../Search/SearchCard"
 
 export const ZeptoNavbar = () => {
   const [showCard, setShowCard] = useState(false);
   const { isLoggedIn } = useAuth();
-  const {username} = useAuth().userData;
+  const { username } = useAuth().userData;
+  const [searchText, setSearchText] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
-
+  const navigate = useNavigate();
+  const handleSearchClick = () => {
+    // Navigate to "/search" when the user clicks on the input field
+    navigate('/search');
+  };
   const handleLocationClick = () => {
     setShowCard(true);
   };
+  const handleSearchChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/Data/trendingSearch.json`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setSearchResults(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    // Fetch data when the component mounts or when searchText changes
+    fetchData();
+  }, [searchText]);
 
   return (
     <div className="  flex flex-col py-1 px-4 overflow-hidden md:flex-row justify-evenly items-center left-0 top-14 sm:top-0 w-full z-[200] lg:px-16 bg-[#3a0463] h-20 font-medium text-white">
       <div className="w-full md:w-24 mb-4 md:mb-0 ">
-      {isLoggedIn ?(  <Link to={`/${username}`}>
+        {isLoggedIn ? (<Link to={`/${username}`}>
           <img
             className="w-full h-auto object-contain"
             src="https://www.zeptonow.com/images/logo.svg"
             alt="logo"
           />
-        </Link>): (  <Link to="/">
+        </Link>) : (<Link to="/">
           <img
             className="w-full h-auto object-contain"
             src="https://www.zeptonow.com/images/logo.svg"
@@ -44,13 +71,21 @@ export const ZeptoNavbar = () => {
       </div>
 
       <div className="w-2/4 my-6 rounded">
-        <input
-          type="text"
-          className="nav-input h-10  text-black w-full items-center rounded shadow-inner font-lota"
-          placeholder="     Search for over 5000 products" />
-
+        <div className="flex items-center">
+          <input
+            type="text"
+            className="nav-input h-10 text-black w-full items-center rounded shadow-inner font-lota"
+            placeholder="Search for over 5000 products"
+            value={searchText}
+            onChange={handleSearchChange}
+            onClick={handleSearchClick}
+          />
+        </div>
       </div>
 
+      {searchResults.length > 0 && (
+        <SearchCard data={searchResults} />
+      )}
       {isLoggedIn ? (
         <Link to={`/${username}/myaccount`}>
           <div className="font-Segoe UI Symbol text-lg flex items-center justify-between">

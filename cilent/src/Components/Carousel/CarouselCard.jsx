@@ -4,14 +4,13 @@ import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from 'react-redux';
 import { addToCart, updateCartItem } from '../../Redux/actions/cartActions';
 import { useAuth } from '../../Context/AuthContext';
+import { v4 as uuidv4 } from 'uuid';
 
 export const CarouselCard = ({ offer }) => {
     const dispatch = useDispatch();
     const { username } = useAuth().userData;
 
     const [localTotalQuantity, setLocalTotalQuantity] = useState(offer.totalquantity);
-    console.log(offer)
-    console.log(offer.totalquantity);
 
     const UpdateHandleAddToCart = (newCount) => {
         const updatedCartItem = {
@@ -97,29 +96,41 @@ export const NotLoggedInCarouselCard = ({offer }) => {
 
     const handlePlus = () => {
         setCount(count + 1);
-    }
-    const handleMinu = () => {
-        if (count > 0) setCount(count - 1);
-    }
-    // const handleAddToCart = () => {
-    //     // Make a POST request to your server with the offer details
-    //     Axios.post('/cart', {
-    //         id: offer.id,
-    //         title: offer.keyword,
-    //         quantity: offer.quantity,
-    //         image: offer.image_url,
-    //         totalQuantity: count,
-    //         price: offer.price,
+        updateLocalStorage(count + 1);
+    };
 
-    //     })
-    //         .then(response => {
-    //             console.log('Item added to cart:', response.data);
-    //         })
-    //         .catch(error => {
+    const handleMinus = () => {
+        if (count > 0) {
+            setCount(count - 1);
+            updateLocalStorage(count - 1);
+        }
+    };
 
-    //             console.error('Error adding item to cart:', error);
-    //         });
-    // }
+    const updateLocalStorage = (newCount) => {
+        const cartItem = {
+            id: uuidv4(), // Generate a random identifier
+            title: offer.keyword,
+            quantity: offer.quantity,
+            image: offer.image_url,
+            totalQuantity: newCount,
+            price: offer.price,
+        };
+
+        const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingIndex = existingCart.findIndex(item => item.title === cartItem.title);
+
+        if (existingIndex !== -1) {
+            // If the item already exists in the cart, update its quantity
+            existingCart[existingIndex].totalQuantity = newCount;
+        } else {
+            // Otherwise, add the new item to the cart
+            existingCart.push(cartItem);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(existingCart));
+
+        console.log('Item updated in local storage:', cartItem);
+    };
 
     return (
         <div className="relative p-4 sm:w-full md:w-1/2 lg:w-1/3">
@@ -131,11 +142,9 @@ export const NotLoggedInCarouselCard = ({offer }) => {
                     <h6 className='font-bold mb-2 sm:mb-0'>{offer.price}</h6>
                     <div className='flex shadow-2xl mt-2 sm:mt-0'>
                         {count > 0 && (
-                            <button className='bg-[#FB3A68] text-white font-thin rounded-tl-lg  rounded-bl-lg py-1 px-2' onClick={handleMinu}><FontAwesomeIcon icon={faMinus} size="xs" /></button>
+                            <button className='bg-[#FB3A68] text-white font-thin rounded-tl-lg  rounded-bl-lg py-1 px-2' onClick={handleMinus}><FontAwesomeIcon icon={faMinus} size="xs" /></button>
                         )}
-                        <button className={` font-bold   py-1 px-2 ${count === 0 ? " rounded-md border border-[#FB3A68]  text-[#FB3A68]  " : "bg-[#FB3A68] text-white"}`} value={count} onClick={() => {
-                            setCount(1);
-                        }}>
+                        <button className={` font-bold   py-1 px-2 ${count === 0 ? " rounded-md border border-[#FB3A68]  text-[#FB3A68]  " : "bg-[#FB3A68] text-white"}`} value={count} onClick={handlePlus}>
                             {count === 0 ? " Add " : count}
                         </button>
                         {count > 0 && (

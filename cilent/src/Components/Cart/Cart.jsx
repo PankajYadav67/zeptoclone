@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GroceryItem } from './GroceryItem';
 import { useAuth } from '../../Context/AuthContext';
@@ -18,15 +18,21 @@ export const Cart = () => {
   const { cartItems, status, error } = useSelector((state) => state.cartData);
 
 
-  const handleEmptyCart = useCallback(() => {
+  const handleEmptyCart = () => {
     dispatch(emptyCart(username));
-  }, [])
+  }
 
   useEffect(() => {
-    if (isLoggedIn === true && status === 'idle') {
-      dispatch(fetchCart(username));
+    if (isLoggedIn) {
+      if (status === 'idle') {
+        dispatch(fetchCart(username));
+      }
+    } else {
+      // Fetch cart items from local storage
+      const localCartItems = JSON.parse(localStorage.getItem('cart')) || [];
+      dispatch({ type: 'FETCH_CART_SUCCESS', payload: localCartItems });
     }
-  }, [dispatch, username, status, isLoggedIn, handleEmptyCart]);
+  }, [dispatch, username, status, isLoggedIn]);
 
   const calculateTotalPriceOrderSummary = () => {
     if (!cartItems) return 0;

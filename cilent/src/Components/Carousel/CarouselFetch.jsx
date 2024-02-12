@@ -55,10 +55,15 @@ export const CarouselFetch = () => {
         totalquantity: cartItem?.totalquantity || 0
       };
     });
-    console.log(dataToRender);
 
-    setJsonData(dataToRender);
-  }, [cartItems])
+    setJsonData(prevData => {
+      // Check if the data is different to avoid unnecessary updates
+      if (JSON.stringify(prevData) !== JSON.stringify(dataToRender)) {
+        return dataToRender;
+      }
+      return prevData;
+    });
+  }, [cartItems]);
 
 
   return (

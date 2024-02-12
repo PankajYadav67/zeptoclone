@@ -10,6 +10,7 @@ import { Products } from "../Components/Product/Products";
 import { Product } from "../Components/Product/Product";
 import { MyAccount } from "../Components/Login/MyAccount";
 import { useAuth } from "../Context/AuthContext";
+import { SearchCard } from "../Components/Search/SearchCard";
 
 //Main Routes Function
 export const RoutesMain = () => {
@@ -21,6 +22,7 @@ export const RoutesMain = () => {
       <ZeptoNavbar />
       <Routes>
         <Route path={isLoggedIn ? `/${username}/` : "/"} element={<Home />} />
+        <Route path={isLoggedIn ? `/${username}/search` : "/search"} element={<SearchCard />} />
 
         {isLoggedIn ? (
           <Route path={`/${username}/myaccount`} element={<MyAccount />} />
