@@ -6,11 +6,10 @@ import { Home } from "../Pages/Home";
 import { ZeptoNavbar } from "../Components/Navbar/MainNavbar";
 import { LoginMerge } from "../Components/Login/LoginMerge";
 import { Cart } from "../Components/Cart/Cart";
-import { Products } from "../Components/Product/Products";
-import { Product } from "../Components/Product/Product";
 import { MyAccount } from "../Components/Login/MyAccount";
 import { useAuth } from "../Context/AuthContext";
 import { SearchCard } from "../Components/Search/SearchCard";
+import { Checkout } from "../Pages/CheckOut";
 
 //Main Routes Function
 export const RoutesMain = () => {
@@ -33,12 +32,16 @@ export const RoutesMain = () => {
           path={isLoggedIn ? `/cart/${username}` : "/cart"}
           element={<Cart />}
         />
-
         <Route
+          path={ `/cart/${username}/checkout` }
+          element={<Checkout />}
+        />
+
+        {/* <Route
           path={isLoggedIn ? `/${username}/products` : "/products"}
           element={<Products />}
         />
-        <Route path="/:username/product/:id" element={<Product />} />
+        <Route path="/:username/product/:id" element={<Product />} /> */}
 
         <Route path="*" element={<DefaultRoute />} />
       </Routes>

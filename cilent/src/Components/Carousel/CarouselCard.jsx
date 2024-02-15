@@ -112,7 +112,7 @@ export const NotLoggedInCarouselCard = ({offer }) => {
             title: offer.keyword,
             quantity: offer.quantity,
             image: offer.image_url,
-            totalQuantity: newCount,
+            totalquantity: newCount,
             price: offer.price,
         };
 
@@ -121,7 +121,7 @@ export const NotLoggedInCarouselCard = ({offer }) => {
 
         if (existingIndex !== -1) {
             // If the item already exists in the cart, update its quantity
-            existingCart[existingIndex].totalQuantity = newCount;
+            existingCart[existingIndex].totalquantity = newCount;
         } else {
             // Otherwise, add the new item to the cart
             existingCart.push(cartItem);

@@ -4,6 +4,8 @@ export const initialState = {
   cartItems: [], // Ensure this is set appropriately
   error: null,
   status: "idle", // 'idle', 'loading', 'succeeded', 'failed'
+  paymentStatus: null,
+  otpVerificationStatus: null,
 };
 
 export const cartReducer = (state = initialState, action) => {
@@ -36,7 +38,7 @@ export const cartReducer = (state = initialState, action) => {
         status: "succeeded",
         error: null,
       };
-      
+
     case types.UPDATE_CART_ITEM_SUCCESS:
       return {
         ...state,
@@ -67,6 +69,16 @@ export const cartReducer = (state = initialState, action) => {
         ...state,
         status: "succeeded",
         error: null,
+      };
+    case types.INITIATE_PAYMENT:
+      return {
+        ...state,
+        paymentStatus: "initiated",
+      };
+    case types.VERIFY_OTP:
+      return {
+        ...state,
+        otpVerificationStatus: action.payload.success ? "success" : "failure",
       };
 
     default:

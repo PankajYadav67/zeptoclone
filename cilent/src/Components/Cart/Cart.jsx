@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GroceryItem } from './GroceryItem';
 import { useAuth } from '../../Context/AuthContext';
 import { emptyCart, fetchCart } from '../../Redux/actions/cartActions';
 import { useNavigate } from "react-router-dom";
 import delivery from "./delivery.jpg";
-
+import { FETCH_CART_SUCCESS } from '../../Redux/actions/cartActionTypes';
+import Snackbar from '@mui/joy/Snackbar';
 
 export const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
   const { username } = useAuth().userData;
   const { isLoggedIn } = useAuth();
@@ -21,6 +23,11 @@ export const Cart = () => {
   const handleEmptyCart = () => {
     dispatch(emptyCart(username));
   }
+  const handleEmptyCartLocal = () => {
+    localStorage.removeItem('cart');
+    dispatch({ type: FETCH_CART_SUCCESS, payload: [] });
+  };
+
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -30,7 +37,7 @@ export const Cart = () => {
     } else {
       // Fetch cart items from local storage
       const localCartItems = JSON.parse(localStorage.getItem('cart')) || [];
-      dispatch({ type: 'FETCH_CART_SUCCESS', payload: localCartItems });
+      dispatch({ type: FETCH_CART_SUCCESS, payload: localCartItems });
     }
   }, [dispatch, username, status, isLoggedIn]);
 
@@ -48,14 +55,23 @@ export const Cart = () => {
     if (!calculateTotalPriceOrderSummary) return 0;
     return calculateTotalPriceOrderSummary() + deliveryPrice;
   };
-
+  const handleCheckout = () => {
+    if (isLoggedIn) {
+      navigate(`/cart/${username}/checkout`);
+    } else {
+      setOpen(true)
+    }
+  };
+  const handleClose = (_, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
   return (
     <div className='bg-[#f6f6f6]'>
-
-
-      {isLoggedIn ? (
+      {cartItems.length > 0 ? (
         <>
-
           <img src={delivery} alt="delivery" />
           <div className="container  mx-auto  py-1">
             <div className="flex shadow-md my-10">
@@ -76,12 +92,12 @@ export const Cart = () => {
                 {status === 'failed' && <h4>Error: {error}</h4>}
                 {status === 'succeeded' && cartItems && cartItems.length > 0 && (
                   <>
-                    {cartItems.map((item) => (<GroceryItem key={item._id} {...item} />))}
+                    {cartItems.map((item) => (<GroceryItem key={item.id} {...item} />))}
                   </>
                 )}
                 <button
                   className="bg-[#FB3A68] rounded-full font-semibold hover:bg-red-600 py-3 text-sm text-white uppercase w-full mt-4"
-                  onClick={handleEmptyCart}
+                  onClick={isLoggedIn ? handleEmptyCart : handleEmptyCartLocal}
                 >
                   Empty Cart
                 </button>
@@ -110,29 +126,38 @@ export const Cart = () => {
                     <span>Total cost</span>
                     <span>₹{calculateTotalCostOrderSummary()}</span>
                   </div>
-                  <button className="bg-[#FB3A68] rounded-full font-semibold hover:bg-red-600 py-3 text-sm text-white uppercase w-full">
+                  <button className="bg-[#FB3A68] rounded-full font-semibold hover:bg-red-600 py-3 text-sm text-white uppercase w-full" onClick={handleCheckout}>
                     Checkout
                   </button>
                 </div>
               </div>
+              <Snackbar
+                open={open}
+                autoHideDuration={4000}
+                onClose={handleClose}
+                color="danger"
+                anchorOrigin={{ vertical: "top", horizontal: "center" }}
+              >
+                You are not currently logged in. Please log in to proceed with checkout.
+              </Snackbar>
             </div>
 
           </div>
-        </>
-      ) : ((!cartItems || cartItems.length === 0) && (
-        <div className="text-center">
+        </>)
+        : (
+          <div className="text-center">
 
-          <div className="absolute md:fixed top-40 inset-x-0 text-center w-full z-10">
-            <img alt="" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" srcSet="https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-256,q-70 256w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-384,q-70 384w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-640,q-70 640w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-750,q-70 750w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-828,q-70 828w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-1080,q-70 1080w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-1200,q-70 1200w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-1920,q-70 1920w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-2048,q-70 2048w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-3840,q-70 3840w" src="https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-3840,q-70" width="48" height="48" decoding="async" data-nimg="1" className="relative overflow-hidden false m-auto pb-5" />
-            <h6 className="block font-norms _3FRewB   undefined">Your cart is empty</h6>
-            <button className=" py-1 px-7 text-base  ring-1 ring-[#FB0468] !p-2 mt-3 rounded" onClick={() => (isLoggedIn ? navigate(`/${username}`) : navigate("/"))} type="button" aria-label="Browse Products">
-              <div className="flex justify-center items-center font-lato">
-                <h6 className="block  text-[#ff5059] ">Browse Products</h6>
-              </div>
-            </button>
-          </div>
-        </div>
-      ))
+            <div className="absolute md:fixed top-40 inset-x-0 text-center w-full z-10">
+              <img alt="" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" srcSet="https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-256,q-70 256w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-384,q-70 384w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-640,q-70 640w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-750,q-70 750w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-828,q-70 828w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-1080,q-70 1080w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-1200,q-70 1200w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-1920,q-70 1920w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-2048,q-70 2048w, https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-3840,q-70 3840w" src="https://cdn.zeptonow.com/app/images/empty-bag.png?tr=w-3840,q-70" width="48" height="48" decoding="async" data-nimg="1" className="relative overflow-hidden false m-auto pb-5" />
+              <h6 className="block font-norms _3FRewB   undefined">Your cart is empty</h6>
+              <button className=" py-1 px-7 text-base  ring-1 ring-[#FB0468] !p-2 mt-3 rounded" onClick={() => (isLoggedIn ? navigate(`/${username}`) : navigate("/"))} type="button" aria-label="Browse Products">
+                <div className="flex justify-center items-center font-lato">
+                  <h6 className="block  text-[#ff5059] ">Browse Products</h6>
+                </div>
+              </button>
+            </div>
+          </div>)
+
       }
     </div>
   );

@@ -143,3 +143,31 @@ export const addToCart = (username, newCartItem) => async (dispatch) => {
     dispatch(addToCartFailure(error.message));
   }
 };
+
+
+export const initiatePayment = () => {
+  return async (dispatch) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    // Dispatch an action to update the state
+    dispatch({ type: types.INITIATE_PAYMENT });
+
+    // Return a response (simulated)
+    return { success: true };
+  };
+};
+
+export const verifyOTP = (otp) => {
+  return async (dispatch) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    // Check if the provided OTP is fixed (e.g., 1234)
+    const isOTPValid = otp === "1234";
+
+    if (isOTPValid) {
+      dispatch({ type: types.VERIFY_OTP, payload: { success: true } });
+    } else {
+      dispatch({ type: types.VERIFY_OTP, payload: { success: false } });
+    }
+  };
+};

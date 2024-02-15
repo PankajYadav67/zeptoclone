@@ -1,14 +1,15 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../Context/AuthContext';
 import { useDispatch } from 'react-redux';
-
+import { v4 as uuidv4 } from 'uuid';
 import { removeCartItem, updateCartItem } from '../../Redux/actions/cartActions';
 
-export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity }) => {
+export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquantity }) => {
   const dispatch = useDispatch();
   const { username } = useAuth().userData;
+  const { isloggedIn } = useAuth();
   const [localTotalQuantity, setLocalTotalQuantity] = useState(totalquantity);
 
 
@@ -26,13 +27,21 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
 
   const handlePlus = () => {
     const newCount = localTotalQuantity + 1;
-    handleAddToCart(newCount);
+    if (isloggedIn) {
+      handleAddToCart(newCount);
+    } else {
+      updateLocalStorage(newCount);
+    }
   }
 
   const handleMinus = () => {
     if (localTotalQuantity > 0) {
       const newCount = localTotalQuantity - 1;
-      handleAddToCart(newCount);
+      if (isloggedIn) {
+        handleAddToCart(newCount);
+      } else {
+        updateLocalStorage(newCount);
+      }
     }
   }
 
@@ -48,8 +57,52 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
 
   const handleRemoveCartItem = useCallback((itemId) => {
     dispatch(removeCartItem(username, itemId));
-  }, [username, dispatch])
+  })
 
+  // local
+  const handleRemoveCartItemLocal = useCallback((itemId) => {
+    // Remove item from local storage
+    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const updatedCart = existingCart.filter(item => item.id !== itemId);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+    console.log('Item removed from local storage:', itemId);
+  }, [username, dispatch]);
+
+
+  const updateLocalStorage = (newCount) => {
+    const cartItem = {
+      id: uuidv4(), // Generate a random identifier
+      title: title,
+      quantity: quantity,
+      image: image,
+      totalquantity: newCount,
+      price: price,
+    };
+
+    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingIndex = existingCart.findIndex(item => item.title === cartItem.title);
+
+    if (existingIndex !== -1) {
+      // If the item already exists in the cart, update its quantity
+      existingCart[existingIndex].totalquantity = newCount;
+    } else {
+      // Otherwise, add the new item to the cart
+      existingCart.push(cartItem);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(existingCart));
+
+    console.log('Item updated in local storage:', cartItem);
+
+    setLocalTotalQuantity(newCount);
+  };
+
+
+  useEffect(() => {
+
+    console.log('updateLocalStorage was called');
+  }, [updateLocalStorage]);
 
   return (
     <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
@@ -61,10 +114,10 @@ export const GroceryItem = ({ _id, title, quantity, price, image, totalquantity 
         <div className="flex flex-col justify-between ml-4 flex-grow">
           <span className="font-bold text-sm">{title}</span>
           <span className="font-bold text-sm">{quantity}</span>
-          <span className="font-sm text-sm">{_id}</span>
+          <span className="font-sm text-sm">{_id ? _id : id}</span>
           <span className="text-red-500 text-xs">{/* Brand information */}</span>
 
-          <span className="font-semibold hover:text-red-500 cursor-pointer text-gray-500 text-xs" onClick={() => handleRemoveCartItem(_id)}>
+          <span className="font-semibold hover:text-red-500 cursor-pointer text-gray-500 text-xs" onClick={() => isloggedIn ? handleRemoveCartItem(_id) : handleRemoveCartItemLocal(id)}>
             Remove
           </span>
         </div>
