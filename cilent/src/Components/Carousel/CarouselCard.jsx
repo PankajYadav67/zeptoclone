@@ -15,7 +15,7 @@ export const CarouselCard = ({ offer }) => {
     const UpdateHandleAddToCart = (newCount) => {
         const updatedCartItem = {
             username,
-            title: offer.title,
+            title: offer.keyword,
             token: 54321,
             totalquantity: newCount,
         };
@@ -72,11 +72,11 @@ export const CarouselCard = ({ offer }) => {
                         {localTotalQuantity > 0 && (
                             <button className='bg-[#FB3A68] text-white font-thin rounded-tl-lg  rounded-bl-lg py-1 px-2' onClick={handleMinus}><FontAwesomeIcon icon={faMinus} size="xs" /></button>
                         )}
-                        <button className={`font-bold py-1 px-2 ${localTotalQuantity === 0 ? "rounded border border-[#FB3A68] text-[#FB3A68]" : "bg-[#FB3A68] text-white"}`}  onClick={() => {
+                        <button className={`font-bold py-1 px-2 ${localTotalQuantity === 0 ? "rounded border border-[#FB3A68] text-[#FB3A68]" : "bg-[#FB3A68] text-white "}`} onClick={() => {
                             handleAddToCart(1);
                         }}>
-
-                            {localTotalQuantity === undefined || 0 ? " Add " : localTotalQuantity}
+                            {console.log(offer)}
+                            {localTotalQuantity === undefined || localTotalQuantity === 0 ? " Add " : localTotalQuantity}
                         </button>
                         {localTotalQuantity > 0 && (
                             <button className='bg-[#FB3A68] text-white font-thin rounded-tr-lg rounded-br-lg py-1 px-2' onClick={handlePlus}><FontAwesomeIcon icon={faPlus} size="xs" /></button>
@@ -91,7 +91,7 @@ export const CarouselCard = ({ offer }) => {
 
 
 
-export const NotLoggedInCarouselCard = ({offer }) => {
+export const NotLoggedInCarouselCard = ({ offer }) => {
     const [count, setCount] = useState(0);
 
     const handlePlus = () => {

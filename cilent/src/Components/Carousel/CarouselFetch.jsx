@@ -33,9 +33,9 @@ export const CarouselFetch = () => {
 
     // Additional effect for logged-in users
     if (isLoggedIn) {
-      async function fetchCartData() {
+      const fetchCartData =  () => {
         try {
-          await dispatch(fetchCart(username));
+           dispatch(fetchCart(username));
         } catch (error) {
           console.error('Error fetching cart data:', error);
         }
@@ -43,7 +43,7 @@ export const CarouselFetch = () => {
 
       fetchCartData();
     }
-  }, [dispatch, isLoggedIn,username]);
+  }, [dispatch, isLoggedIn, username]);
 
   useEffect(() => {
     console.log(cartItems);

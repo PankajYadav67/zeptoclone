@@ -9,7 +9,7 @@ import { removeCartItem, updateCartItem } from '../../Redux/actions/cartActions'
 export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquantity }) => {
   const dispatch = useDispatch();
   const { username } = useAuth().userData;
-  const { isloggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
   const [localTotalQuantity, setLocalTotalQuantity] = useState(totalquantity);
 
 
@@ -27,7 +27,7 @@ export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquant
 
   const handlePlus = () => {
     const newCount = localTotalQuantity + 1;
-    if (isloggedIn) {
+    if (isLoggedIn === true) {
       handleAddToCart(newCount);
     } else {
       updateLocalStorage(newCount);
@@ -37,7 +37,7 @@ export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquant
   const handleMinus = () => {
     if (localTotalQuantity > 0) {
       const newCount = localTotalQuantity - 1;
-      if (isloggedIn) {
+      if (isLoggedIn === true) {
         handleAddToCart(newCount);
       } else {
         updateLocalStorage(newCount);
@@ -100,7 +100,6 @@ export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquant
 
 
   useEffect(() => {
-
     console.log('updateLocalStorage was called');
   }, [updateLocalStorage]);
 
@@ -117,16 +116,16 @@ export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquant
           <span className="font-sm text-sm">{_id ? _id : id}</span>
           <span className="text-red-500 text-xs">{/* Brand information */}</span>
 
-          <span className="font-semibold hover:text-red-500 cursor-pointer text-gray-500 text-xs" onClick={() => isloggedIn ? handleRemoveCartItem(_id) : handleRemoveCartItemLocal(id)}>
+          <span className="font-semibold hover:text-red-500 cursor-pointer text-gray-500 text-xs" onClick={() => (isLoggedIn ? handleRemoveCartItem(_id) : handleRemoveCartItemLocal(id))}>
             Remove
           </span>
         </div>
       </div>
       <div className="flex justify-center w-1/5">
-        <FontAwesomeIcon icon={faMinus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={() => handleMinus()} />
+        <FontAwesomeIcon icon={faMinus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={handleMinus} />
         <input className="mx-2 border text-center w-8" type="text" value={localTotalQuantity} readOnly />
-        <FontAwesomeIcon icon={faPlus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={() =>
-          handlePlus()
+        <FontAwesomeIcon icon={faPlus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={
+          handlePlus
         } />
       </div>
       <span className="text-center w-1/5 font-semibold text-sm">{price}</span>
