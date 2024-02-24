@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const UserModel = require("../model/auth.model");
 const authRouter = Router();
+const UserModel = require("../model/auth.model");
 
 authRouter.post("/signup", async (req, res) => {
   try {

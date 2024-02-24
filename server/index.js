@@ -3,6 +3,7 @@ const cors = require("cors");
 const authRouter = require("./route/auth.route");
 const cartRouter = require("./route/cart.route");
 const connection = require("./config/db");
+const productRouter = require("./route/products.route");
 
 require("dotenv").config();
 
@@ -15,7 +16,7 @@ app.use(express.text());
 
 app.use("/auth", authRouter);
 app.use(`/cart`, cartRouter);
-
+app.use("/product",productRouter)
 app.get("/", (req, res) => {
   res.send(
     "This is HomePage if its visiable for you its mean your express app running fine..."

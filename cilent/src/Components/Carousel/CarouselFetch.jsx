@@ -5,8 +5,10 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../Context/AuthContext";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCart } from "../../Redux/actions/cartActions";
+import { URL } from "../../Api/EndPoints";
 
 export const CarouselFetch = () => {
+
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
   const { username } = useAuth().userData;
@@ -16,7 +18,7 @@ export const CarouselFetch = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('/Data/trendingSearch.json');
+        const response = await fetch(`${URL}/products`);
 
         if (!response.ok) {
           throw new Error('Network response was not ok');
