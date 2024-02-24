@@ -1,36 +1,66 @@
+# Zepto Clone
 
-🚀 Zepto Clone - Quick Commerce Website 🚀
+Zepto is a quick commerce platform that I developed using React, Tailwind CSS, JavaScript, various npm packages, and incorporating functionalities such as login, cart, and API integration..
 
-Overview 🌐
-Zepto Clone is a nimble and lightweight e-commerce platform, inspired by the efficiency of the original Zepto framework. Elevate your online shopping experience with a modern, user-friendly design for swift commerce transactions.
+## Authors
 
-Technologies Used 💻
+- Pankajkumar Yadav
 
-Frontend: HTML5, CSS3, JavaScript (React.js)
-Backend: Node.js, 
-Database: json-server
-Getting Started 🚀
+## Demo
 
-Clone the repository:
-
-bash
-Copy code
-git clone https://github.com/PankajYadav67/zepto-clone.git
-Install dependencies:
-
-bash
-Copy code
-cd zepto-clone
-npm install
-Configure environment variables:
-
-Create a .env file based on the provided .env.example and add the required configuration.
-Run the application:
-
-bash
-npm start
-Visit localhost:3000 in your browser to start using Zepto Clone.
-
-demo link :- https://iridescent-beignet-aafa4b.netlify.app
+https://zeptoclone.netlify.app/
 
 
+
+## Tech Stack
+
+**Client:** React, Js, Tailwind CSS ,React-Redux, Font Awesome(icons)
+
+**Server:** MongoDB, Express.js, mongoose,Node.js
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/PankajYadav67/zeptoclone.git
+```
+
+Go to the project directory
+
+```bash
+  cd zeptoclone
+```
+Run npm run dev command on terminal
+
+
+## Screenshots
+
+**Navbar:**
+![App Screenshot](/public/Screenshot%20(225).png)
+
+**Cart:**
+![App Screenshot](/public/Screenshot%20(226).png)
+
+**Hero Section:**
+![App Screenshot](/public/Screenshot%20(232).png)
+![App Screenshot](/public/Screenshot%20(229).png)
+
+
+**Login/Sign-Up:**
+![App Screenshot](/public/Screenshot%20(227).png)
+![App Screenshot](/public/Screenshot%20(228).png)
+
+**How It Works:**
+![App Screenshot](/public/Screenshot%20(231).png)
+
+
+**Footer:**
+![App Screenshot](/public/Screenshot%20(230).png)
+
+
+## Reference 
+```bash
+  zeptonow.com
+```
