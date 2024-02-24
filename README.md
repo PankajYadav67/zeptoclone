@@ -38,26 +38,26 @@ Run npm run dev command on terminal
 ## Screenshots
 
 **Navbar:**
-![App Screenshot](/public/Screenshot%20(225).png)
+![App Screenshot](/cilent/public/Screenshot%20(225).png)
 
 **Cart:**
-![App Screenshot](/public/Screenshot%20(226).png)
+![App Screenshot](/cilent/public/Screenshot%20(226).png)
 
 **Hero Section:**
-![App Screenshot](/public/Screenshot%20(232).png)
-![App Screenshot](/public/Screenshot%20(229).png)
+![App Screenshot](/cilent/public/Screenshot%20(232).png)
+![App Screenshot](/cilent/public/Screenshot%20(229).png)
 
 
 **Login/Sign-Up:**
-![App Screenshot](/public/Screenshot%20(227).png)
-![App Screenshot](/public/Screenshot%20(228).png)
+![App Screenshot](/cilent/public/Screenshot%20(227).png)
+![App Screenshot](/cilent/public/Screenshot%20(228).png)
 
 **How It Works:**
-![App Screenshot](/public/Screenshot%20(231).png)
+![App Screenshot](/cilent/public/Screenshot%20(231).png)
 
 
 **Footer:**
-![App Screenshot](/public/Screenshot%20(230).png)
+![App Screenshot](/cilent/public/Screenshot%20(230).png)
 
 
 ## Reference 
