@@ -8,7 +8,7 @@ import { LoginMerge } from "../Components/Login/LoginMerge";
 import { Cart } from "../Components/Cart/Cart";
 import { MyAccount } from "../Components/Login/MyAccount";
 import { useAuth } from "../Context/AuthContext";
-import { SearchCard } from "../Components/Search/SearchCard";
+
 import { Checkout } from "../Pages/CheckOut";
 
 //Main Routes Function
@@ -21,7 +21,7 @@ export const RoutesMain = () => {
       <ZeptoNavbar />
       <Routes>
         <Route path={isLoggedIn ? `/${username}/` : "/"} element={<Home />} />
-        <Route path={isLoggedIn ? `/${username}/search` : "/search"} element={<SearchCard />} />
+        {/* <Route path={isLoggedIn ? `/${username}/search` : "/search"} element={<SearchCard />} /> */}
 
         {isLoggedIn ? (
           <Route path={`/${username}/myaccount`} element={<MyAccount />} />

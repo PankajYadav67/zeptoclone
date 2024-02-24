@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from 'react-redux';
@@ -11,6 +11,12 @@ export const CarouselCard = ({ offer }) => {
     const { username } = useAuth().userData;
 
     const [localTotalQuantity, setLocalTotalQuantity] = useState(offer.totalquantity);
+
+    useEffect(() => {
+        // Set the initial localTotalQuantity when the offer changes
+        setLocalTotalQuantity(offer.totalquantity || 0);
+    }, [offer.totalquantity]);
+
 
     const UpdateHandleAddToCart = (newCount) => {
         const updatedCartItem = {
@@ -76,7 +82,9 @@ export const CarouselCard = ({ offer }) => {
                             handleAddToCart(1);
                         }}>
                             {console.log(offer)}
-                            {localTotalQuantity === undefined || localTotalQuantity === 0 ? " Add " : localTotalQuantity}
+                            {console.log(localTotalQuantity)}
+                            {console.log(offer)}
+                            {localTotalQuantity === undefined || localTotalQuantity === 0 ? "Add" : localTotalQuantity}
                         </button>
                         {localTotalQuantity > 0 && (
                             <button className='bg-[#FB3A68] text-white font-thin rounded-tr-lg rounded-br-lg py-1 px-2' onClick={handlePlus}><FontAwesomeIcon icon={faPlus} size="xs" /></button>

@@ -18,7 +18,7 @@ export const CarouselFetch = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`${URL}/products`);
+        const response = await fetch(`${URL}/product/`);
 
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -37,7 +37,7 @@ export const CarouselFetch = () => {
     if (isLoggedIn) {
       const fetchCartData =  () => {
         try {
-           dispatch(fetchCart(username));
+          dispatch(fetchCart(username));
         } catch (error) {
           console.error('Error fetching cart data:', error);
         }
@@ -48,16 +48,16 @@ export const CarouselFetch = () => {
   }, [dispatch, isLoggedIn, username]);
 
   useEffect(() => {
-    console.log(cartItems);
     const dataToRender = jsonData.map(item => {
       const cartItem = cartItems.find(cart => cart.title === item.keyword);
 
       return {
         ...item,
-        totalquantity: cartItem?.totalquantity || 0
+        totalquantity: cartItem?.totalquantity || item.total_quantity
       };
     });
 
+    // Check if the data is different to avoid unnecessary updates
     setJsonData(prevData => {
       // Check if the data is different to avoid unnecessary updates
       if (JSON.stringify(prevData) !== JSON.stringify(dataToRender)) {
@@ -65,7 +65,9 @@ export const CarouselFetch = () => {
       }
       return prevData;
     });
-  }, [cartItems]);
+
+  }, [cartItems, jsonData]);
+
 
 
   return (

@@ -74,7 +74,7 @@ export const Cart = () => {
         <>
           <img src={delivery} alt="delivery" />
           <div className="container  mx-auto  py-1">
-            <div className="flex shadow-md my-10">
+            <div className="flex shadow-md  my-10">
 
               <div className="w-3/4 bg-white px-10 py-10 rounded">
                 <div className="flex justify-between text-center border-b pb-8">
@@ -92,7 +92,7 @@ export const Cart = () => {
                 {status === 'failed' && <h4>Error: {error}</h4>}
                 {status === 'succeeded' && cartItems && cartItems.length > 0 && (
                   <>
-                    {cartItems.map((item) => (<GroceryItem key={item.id} {...item} />))}
+                    {cartItems.map((item) => (<GroceryItem key={isLoggedIn ? item._id : item.id} {...item} />))}
                   </>
                 )}
                 <button

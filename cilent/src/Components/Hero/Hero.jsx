@@ -28,15 +28,15 @@ export const HeroSection = () => {
 
 
         <HeroCarousel />
-        <HeroSmallCarousel />
 
 
         <FetchBankOffer />
 
+        <HeroSmallCarousel />
 
         <CarouselFetch />
-
         <ProductCategory />
+
         <hr />
 
         <HowItWorks />

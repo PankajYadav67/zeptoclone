@@ -4,14 +4,14 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../Context/AuthContext';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { removeCartItem, updateCartItem } from '../../Redux/actions/cartActions';
+import { fetchCart, removeCartItem, updateCartItem } from '../../Redux/actions/cartActions';
+import { FETCH_CART_SUCCESS } from '../../Redux/actions/cartActionTypes';
 
 export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquantity }) => {
   const dispatch = useDispatch();
   const { username } = useAuth().userData;
   const { isLoggedIn } = useAuth();
   const [localTotalQuantity, setLocalTotalQuantity] = useState(totalquantity);
-
 
   const handleAddToCart = (newCount) => {
     const updatedCartItem = {
@@ -34,7 +34,7 @@ export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquant
     }
   }
 
-  const handleMinus = () => {
+  const handleMinus = (id) => {
     if (localTotalQuantity > 0) {
       const newCount = localTotalQuantity - 1;
       if (isLoggedIn === true) {
@@ -42,6 +42,15 @@ export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquant
       } else {
         updateLocalStorage(newCount);
       }
+
+    }
+    if (localTotalQuantity === 0) {
+      if (isLoggedIn === true) {
+        handleRemoveCartItem(id)
+      } else {
+        handleRemoveCartItemLocal(id);
+      }
+
     }
   }
 
@@ -55,9 +64,18 @@ export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquant
     return (quantity * parseFloat(price.slice(1))).toFixed(2);
   };
 
-  const handleRemoveCartItem = useCallback((itemId) => {
-    dispatch(removeCartItem(username, itemId));
-  })
+  const handleRemoveCartItem = useCallback(async (itemId) => {
+    // Remove item from the cart
+    await dispatch(removeCartItem(username, itemId));
+
+    // After successful removal, fetch the updated cart data
+    try {
+      await dispatch(fetchCart(username));
+
+    } catch (error) {
+      console.error('Error fetching cart data after removal:', error);
+    }
+  }, [dispatch, username]);
 
   // local
   const handleRemoveCartItemLocal = useCallback((itemId) => {
@@ -66,8 +84,10 @@ export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquant
     const updatedCart = existingCart.filter(item => item.id !== itemId);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
 
+    localStorage.removeItem(item => item.id === itemId);
+    dispatch({ type: FETCH_CART_SUCCESS, payload: updatedCart });
     console.log('Item removed from local storage:', itemId);
-  }, [username, dispatch]);
+  }, [username, dispatch,]);
 
 
   const updateLocalStorage = (newCount) => {
@@ -122,7 +142,7 @@ export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquant
         </div>
       </div>
       <div className="flex justify-center w-1/5">
-        <FontAwesomeIcon icon={faMinus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={handleMinus} />
+        <FontAwesomeIcon icon={faMinus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={() => (isLoggedIn ? handleMinus(_id) : handleMinus(id))} />
         <input className="mx-2 border text-center w-8" type="text" value={localTotalQuantity} readOnly />
         <FontAwesomeIcon icon={faPlus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={
           handlePlus
