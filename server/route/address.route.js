@@ -1,6 +1,6 @@
 const express = require("express");
 const addressRouter = express.Router();
-const addressModel = require("../models/address.model");
+const addressModel = require("../model/address.model");
 
 addressRouter.post("/save", async (req, res) => {
 
