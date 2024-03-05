@@ -4,6 +4,7 @@ const authRouter = require("./route/auth.route");
 const cartRouter = require("./route/cart.route");
 const connection = require("./config/db");
 const productRouter = require("./route/products.route");
+const addressRouter = require("./route/address.route");
 
 require("dotenv").config();
 
@@ -16,10 +17,12 @@ app.use(express.text());
 
 app.use("/auth", authRouter);
 app.use(`/cart`, cartRouter);
-app.use("/product",productRouter)
+app.use("/product", productRouter);
+app.use("/address", addressRouter);
+
 app.get("/", (req, res) => {
   res.send(
-    "This is HomePage if its visiable for you its mean your express app running fine..."
+    "This is HomePage if its visiable to you its mean your Server app running fine..."
   );
 });
 

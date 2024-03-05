@@ -132,9 +132,10 @@ export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquant
         </div>
         <div className="flex flex-col justify-between ml-4 flex-grow">
           <span className="font-bold text-sm">{title}</span>
-          <span className="font-bold text-sm">{quantity}</span>
+          <span className="font-bold text-sm text-zinc-500">{quantity}</span>
           <span className="font-sm text-sm">{_id ? _id : id}</span>
-          <span className="text-red-500 text-xs">{/* Brand information */}</span>
+          {/* <span className="text-center w-1/5 font-semibold text-sm">{price}</span> */}
+          {/* <span className="text-red-500 text-xs">Brand information</span> */}
 
           <span className="font-semibold hover:text-red-500 cursor-pointer text-gray-500 text-xs" onClick={() => (isLoggedIn ? handleRemoveCartItem(_id) : handleRemoveCartItemLocal(id))}>
             Remove
@@ -142,12 +143,13 @@ export const GroceryItem = ({ _id, id, title, quantity, price, image, totalquant
         </div>
       </div>
       <div className="flex justify-center w-1/5">
-        <FontAwesomeIcon icon={faMinus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={() => (isLoggedIn ? handleMinus(_id) : handleMinus(id))} />
+        <FontAwesomeIcon icon={faMinus} className="fill-current cursor-pointer text-gray-600 w-3 mt-1" onClick={() => (isLoggedIn ? handleMinus(_id) : handleMinus(id))} />
         <input className="mx-2 border text-center w-8" type="text" value={localTotalQuantity} readOnly />
-        <FontAwesomeIcon icon={faPlus} className="fill-current cursor-pointer text-gray-600 w-3" onClick={
+        <FontAwesomeIcon icon={faPlus} className="fill-current cursor-pointer text-gray-600 w-3 mt-1" onClick={
           handlePlus
         } />
       </div>
+      {/* totalPrice */}
       <span className="text-center w-1/5 font-semibold text-sm">{price}</span>
       <span className="text-center w-1/5 font-semibold text-sm">{calculateTotalPriceCartItem()}</span>
     </div>

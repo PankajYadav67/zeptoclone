@@ -96,7 +96,7 @@ export const Cart = () => {
                   </>
                 )}
                 <button
-                  className="bg-[#FB3A68] rounded-full font-semibold hover:bg-red-600 py-3 text-sm text-white uppercase w-full mt-4"
+                  className="text-[#FB3A68] rounded-lg font-semibold ring-2 ring-[#FB3A68] py-3 text-sm uppercase w-full mt-4"
                   onClick={isLoggedIn ? handleEmptyCart : handleEmptyCartLocal}
                 >
                   Empty Cart

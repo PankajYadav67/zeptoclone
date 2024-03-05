@@ -18,7 +18,8 @@ export const HowItWorks = () => {
                     <img
                         src={
                             "https://cdn.zeptonow.com/mweb-prod/images/pdp/place-order.svg"
-                        } alt="place the order image"
+                        } 
+                        alt="place the order image"
                         style={{
                             color: "transparent",
                             objectFit: "contain",
