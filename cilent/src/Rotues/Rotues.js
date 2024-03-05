@@ -15,7 +15,8 @@ import { Checkout } from "../Pages/CheckOut";
 export const RoutesMain = () => {
   const { isLoggedIn } = useAuth();
   const {username} = useAuth().userData;
-  
+
+
   return (
     <div>
       <ZeptoNavbar />

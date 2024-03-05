@@ -81,9 +81,9 @@ export const CarouselCard = ({ offer }) => {
                         <button className={`font-bold py-1 px-2 ${localTotalQuantity === 0 ? "rounded border border-[#FB3A68] text-[#FB3A68]" : "bg-[#FB3A68] text-white "}`} onClick={() => {
                             handleAddToCart(1);
                         }}>
-                            {console.log(offer)}
+                            {/* {console.log(offer)}
                             {console.log(localTotalQuantity)}
-                            {console.log(offer)}
+                            {console.log(offer)} */}
                             {localTotalQuantity === undefined || localTotalQuantity === 0 ? "Add" : localTotalQuantity}
                         </button>
                         {localTotalQuantity > 0 && (

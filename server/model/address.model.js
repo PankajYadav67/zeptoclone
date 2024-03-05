@@ -5,6 +5,7 @@ const addressSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  username: { type: String, required: true }
 });
 
 const Address = mongoose.model("address", addressSchema);

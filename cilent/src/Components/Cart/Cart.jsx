@@ -8,6 +8,7 @@ import delivery from "./delivery.jpg";
 import { FETCH_CART_SUCCESS } from '../../Redux/actions/cartActionTypes';
 import Snackbar from '@mui/joy/Snackbar';
 
+
 export const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -55,13 +56,17 @@ export const Cart = () => {
     if (!calculateTotalPriceOrderSummary) return 0;
     return calculateTotalPriceOrderSummary() + deliveryPrice;
   };
+
   const handleCheckout = () => {
     if (isLoggedIn) {
-      navigate(`/cart/${username}/checkout`);
-    } else {
-      setOpen(true)
+     
+        navigate(`/cart/${username}/checkout`);
+      } else {
+      setOpen(true);
     }
-  };
+  
+  }
+
   const handleClose = (_, reason) => {
     if (reason === "clickaway") {
       return;

@@ -18,7 +18,7 @@ app.use(express.text());
 app.use("/auth", authRouter);
 app.use(`/cart`, cartRouter);
 app.use("/product", productRouter);
-app.use("/address", addressRouter);
+app.use("/add", addressRouter);
 
 app.get("/", (req, res) => {
   res.send(
